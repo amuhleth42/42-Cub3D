@@ -43,13 +43,16 @@ void	init_map(t_data *a)
 
 void	init_game(t_data *a)
 {
-	a->cam.x = 200;
-	a->cam.y = 200;
+	a->cam.x = 100.0;
+	a->cam.y = 100.0;
+	a->cam.a = 0.0;
+	a->cam.dx = cos(a->cam.a);
+	a->cam.dy = sin(a->cam.a);
 	a->cam.size = 8;
-	a->cam.color = 0xFFFFFF;
+	a->cam.color = 0xFFFF00;
 
 	init_map(a);
-	draw_map(a);
+	//draw_map(a);
 	draw_cam(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
 }

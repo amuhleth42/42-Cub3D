@@ -1,6 +1,7 @@
 
 
 #include "cub3d.h"
+#include <stdio.h>
 
 void	clear_img(t_img *i)
 {
@@ -44,9 +45,15 @@ void	draw_map(t_data *a)
 		while (a->map[i][j] != '\0')
 		{
 			if (a->map[i][j] == '1')
-				draw_square(a, j * 64, i * 64, 64, 0xFFFFFF);
+			{
+				draw_square(a, j * 64, i * 64, 64, 0x808080);
+				draw_square(a, j * 64 + 2, i * 64 + 2, 62, 0xFFFFFF);
+			}
 			if (a->map[i][j] == '0')
-				draw_square(a, j * 64, i * 64, 64, 0x000000);
+			{
+				draw_square(a, j * 64, i * 64, 64, 0x808080);
+				draw_square(a, j * 64 + 2, i * 64 + 2, 62, 0x000000);
+			}
 			j++;
 		}
 		i++;
@@ -55,5 +62,7 @@ void	draw_map(t_data *a)
 
 void	draw_cam(t_data *a)
 {
+	printf("x: %d, y:, %d\n", (int)a->cam.x, (int)a->cam.y);
 	draw_square(a, a->cam.x, a->cam.y, a->cam.size, a->cam.color);
+	draw_square(a, a->cam.x + 4 + a->cam.dx * 10, a->cam.y + 4 + a->cam.dy * 10, 2, a->cam.color);
 }

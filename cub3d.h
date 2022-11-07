@@ -7,8 +7,10 @@
 # include "libft.h"
 # include <math.h>
 
-# define WIN_WIDTH 500
-# define WIN_HEIGHT 500
+# define WIN_WIDTH 384
+# define WIN_HEIGHT 384
+
+# define PI 3.1415926535
 
 enum
 {
@@ -30,10 +32,13 @@ typedef struct s_img
 
 typedef struct s_cam
 {
-	int		x;
-	int		y;
+	float		x;
+	float		y;
 	int		size;
 	int		color;
+	float		dx;
+	float		dy;
+	float		a;
 }			t_cam;
 
 typedef struct s_data
@@ -65,5 +70,8 @@ int		key_down(int key, t_data *a);
 //	move.c
 
 void	move(t_data *a, int dx, int dy);
+void	rl_move(t_data *a, int dx, int dy);
+void	rotate(t_data *a, double da);
+void	reset_screen(t_data *a);
 
 #endif
