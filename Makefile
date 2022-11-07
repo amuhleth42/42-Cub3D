@@ -8,6 +8,9 @@ SRCS_DIR	= srcs
 OBJS_DIR	= $(shell mkdir -p objs && printf "objs")
 
 SRCS		=	main.c				\
+				draw.c				\
+				exit.c				\
+				keyboard.c			\
 
 OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
