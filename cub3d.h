@@ -28,17 +28,30 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_cam
+{
+	int		x;
+	int		y;
+	int		size;
+	int		color;
+}			t_cam;
+
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
+	char	**map;
 	t_img	i;
+	t_cam	cam;
 }			t_data;
 
 //	draw.c
 
 void	clear_img(t_img *i);
 void	put_pixel_to_img(t_img *i, int x, int y, int color);
+void	draw_square(t_data *a, int x, int y, int size, int color);
+void	draw_cam(t_data *a);
+void	draw_map(t_data *a);
 
 //	exit.c
 
@@ -47,5 +60,10 @@ int		red_cross(t_data *a);
 //	keyboard.c
 
 int		key_hook(int key, t_data *a);
+int		key_down(int key, t_data *a);
+
+//	move.c
+
+void	move(t_data *a, int dx, int dy);
 
 #endif
