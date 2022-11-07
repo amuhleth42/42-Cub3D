@@ -1,4 +1,4 @@
-NAME		= fdf
+NAME		= cub3d
 
 FLAGS		= -Wall -Wextra -Werror -Ofast
 INCL		= -I. -I./mlx -I./libft
@@ -8,17 +8,6 @@ SRCS_DIR	= srcs
 OBJS_DIR	= $(shell mkdir -p objs && printf "objs")
 
 SRCS		=	main.c				\
-				render.c			\
-			  	bresenham.c			\
-				bresenham2.c		\
-				draw.c				\
-				keyboard.c			\
-				mouse.c				\
-				view_matrix.c		\
-				color.c				\
-				rotation.c			\
-				exit.c				\
-				parsing.c
 
 OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
