@@ -98,6 +98,6 @@ void	draw_rays(t_data *a);
 
 //	draw2.c
 
-void	draw_column(t_data *a, float dist, int i);
+void	draw_column(t_data *a, float dist, int i, int color);
 
 #endif

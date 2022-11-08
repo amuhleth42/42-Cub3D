@@ -126,12 +126,12 @@ void	draw_ray(t_data *a, float ra, int i)
 
 	if (r.hdist < r.vdist)
 	{
-		draw_column(a, r.hdist, i);
+		draw_column(a, r.hdist, i, 0x0000FF);
 		draw_square(&a->minimap, r.hx, r.hy, 3, 0x00FF00);
 	}
 	else
 	{
-		draw_column(a, r.vdist, i);
+		draw_column(a, r.vdist, i, 0x0000AA);
 		draw_square(&a->minimap, r.vx, r.vy, 3, 0x00FF00);
 	}
 }
@@ -141,11 +141,11 @@ void	draw_rays(t_data *a)
 	float	start_angle;
 	int		i;
 
-	start_angle = add_rad(a->cam.a, -PI / 4);
+	start_angle = add_rad(a->cam.a, -PI / 5);
 	i = 0;
 	while (i < 182)
 	{
-		draw_ray(a, add_rad(start_angle, i * PI / 384), i);
+		draw_ray(a, add_rad(start_angle, i * PI / 455), i);
 		i++;
 	}
 }
