@@ -13,8 +13,8 @@ void	draw_rectangle(t_img *img, float size, int index, int color)
 	while (i < size)
 	{
 		j = 0;
-		while (j++ < WIN_WIDTH / 182)
-			put_pixel_to_img(img, j + index * WIN_WIDTH / 182, i + offset, color);
+		while (j++ < 2)
+			put_pixel_to_img(img, j + index * 2, i + offset, color);
 		i++;
 	}
 }
@@ -32,7 +32,7 @@ void	draw_column(t_data *a, float dist, int i, int color)
 	float	size;
 
 	dist = fix_fisheye(dist, i);
-	size = 64 * WIN_HEIGHT / dist;
+	size = 64 * WIN_HEIGHT / 2 / dist;
 	if (size > WIN_HEIGHT)
 		size = WIN_HEIGHT;
 	draw_rectangle(&a->fp, size, i, color);

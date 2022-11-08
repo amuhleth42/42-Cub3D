@@ -36,7 +36,7 @@ void	init_map(t_data *a)
 		i++;
 	}
 	a->map[0] = "111111";
-	a->map[1] = "100001";
+	a->map[1] = "110001";
 	a->map[2] = "100001";
 	a->map[3] = "100101";
 	a->map[4] = "100001";
@@ -45,8 +45,8 @@ void	init_map(t_data *a)
 
 void	init_game(t_data *a)
 {
-	a->cam.x = 100.0;
-	a->cam.y = 100.0;
+	a->cam.x = 170.0;
+	a->cam.y = 170.0;
 	a->cam.a = 0.0;
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
