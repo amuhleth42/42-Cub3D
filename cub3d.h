@@ -47,6 +47,7 @@ typedef struct s_ray
 	float	y;
 	float	xoff;
 	float	yoff;
+	int		nope;
 }			t_ray;
 
 typedef struct s_data

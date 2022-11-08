@@ -21,11 +21,31 @@ void	reset_screen(t_data *a)
 	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
 }
 
+int	check_move_ok(t_data *a, float x, float y)
+{
+	int	mx;
+	int	my;
+
+	mx = ((int)x) >> 6;
+	my = ((int)y) >> 6;
+	if (0 <= mx && mx < 6 && 0 <= my && my < 6 && a->map[my][mx] == '1')
+		return (0);
+	return (1);
+
+}
+
 void	move(t_data *a, int dirx, int diry)
 {
-	a->cam.x += a->cam.dx * dirx * 4;
-	a->cam.y += a->cam.dy * diry * 4;
-	reset_screen(a);
+	float	new_x;
+	float	new_y;
+	new_x = a->cam.x + a->cam.dx * dirx * 4;
+	new_y = a->cam.y + a->cam.dy * diry * 4;
+	if (check_move_ok(a, new_x, new_y))
+	{
+		a->cam.x = new_x;
+		a->cam.y = new_y;
+		reset_screen(a);
+	}
 }
 
 void	rl_move(t_data *a, int dirx, int diry)

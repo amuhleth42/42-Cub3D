@@ -23,7 +23,7 @@ void	set_ray_start(t_data *a, t_ray *r, float ra)
 	{
 		r->x = a->cam.x;
 		r->y = a->cam.y;
-		//doomed
+		r->nope = 1;
 	}
 }
 
@@ -32,7 +32,6 @@ int	hit_wall_x(t_data *a, t_ray *r)
 	int	x;
 	int	y;
 
-	(void)a;
 	x = ((int)r->x) >> 6;
 	y = ((int)r->y) >> 6;
 	printf("Map x: %d, map y: %d\n", x, y);
@@ -49,6 +48,7 @@ void	draw_ray(t_data *a, float ra)
 	t_ray	r;
 	int		i;
 
+	ft_bzero(&r, sizeof(r));
 	set_ray_start(a, &r, ra);
 	i = 0;
 	while (i < 8)
@@ -60,6 +60,6 @@ void	draw_ray(t_data *a, float ra)
 		r.y += r.yoff;
 		i++;
 	}
-	draw_square(a, r.x, r.y, 3, 0xFF0000);
+	draw_square(a, r.x, r.y, 3, 0x00FF00);
 
 }
