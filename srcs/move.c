@@ -17,7 +17,7 @@ void	reset_screen(t_data *a)
 	clear_img(a->i.img);
 	draw_map(a);
 	draw_cam(a);
-	draw_ray(a, a->cam.a);
+	draw_rays(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
 }
 

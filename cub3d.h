@@ -86,9 +86,11 @@ void	move(t_data *a, int dx, int dy);
 void	rl_move(t_data *a, int dx, int dy);
 void	rotate(t_data *a, double da);
 void	reset_screen(t_data *a);
+float	add_rad(float a1, float a2);
 
 //	ray.c
 
 void	draw_ray(t_data *a, float ra);
+void	draw_rays(t_data *a);
 
 #endif

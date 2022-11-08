@@ -111,6 +111,7 @@ void	vertical_check(t_data *a, t_ray *r, float ra)
 	r->vx = r->x;
 	r->vy = r->y;
 }
+
 void	draw_ray(t_data *a, float ra)
 {
 	t_ray	r;
@@ -118,5 +119,18 @@ void	draw_ray(t_data *a, float ra)
 	ft_bzero(&r, sizeof(r));
 	horizontal_check(a, &r, ra);
 	vertical_check(a, &r, ra);
+}
 
+void	draw_rays(t_data *a)
+{
+	float	start_angle;
+	int		i;
+
+	start_angle = add_rad(a->cam.a, -PI / 4);
+	i = 0;
+	while (i < 60)
+	{
+		draw_ray(a, add_rad(start_angle, i * PI / 120));
+		i++;
+	}
 }
