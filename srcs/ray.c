@@ -3,7 +3,12 @@
 #include "cub3d.h"
 #include <stdio.h>
 
-void	set_ray_start(t_data *a, t_ray *r, float ra)
+float	dist(float ax, float ay, float bx, float by)
+{
+	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
+}
+
+void	set_horizontal_start(t_data *a, t_ray *r, float ra)
 {
 	if (ra > PI)
 	{
@@ -27,7 +32,31 @@ void	set_ray_start(t_data *a, t_ray *r, float ra)
 	}
 }
 
-int	hit_wall_x(t_data *a, t_ray *r)
+void	set_vertical_start(t_data *a, t_ray *r, float ra)
+{
+	if (PI / 2 < ra && ra < 3 * PI / 2)
+	{
+		r->x = (((int)a->cam.x>>6)<<6) - 0.0001;
+		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
+		r->xoff = -64;
+		r->yoff = -r->xoff * -tan(ra);
+	}
+	else if (3 * PI / 2 < ra || ra < PI / 2)
+	{
+		r->x = (((int)a->cam.x>>6)<<6) + 64;
+		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
+		r->xoff = 64;
+		r->yoff = -r->xoff * -tan(ra);
+	}
+	else
+	{
+		r->x = a->cam.x;
+		r->y = a->cam.y;
+		r->nope = 1;
+	}
+}
+
+int	hit_wall(t_data *a, t_ray *r)
 {
 	int	x;
 	int	y;
@@ -43,23 +72,51 @@ int	hit_wall_x(t_data *a, t_ray *r)
 	return (0);
 }
 
-void	draw_ray(t_data *a, float ra)
+void	horizontal_check(t_data *a, t_ray *r, float ra)
 {
-	t_ray	r;
-	int		i;
+	int	i;
 
-	ft_bzero(&r, sizeof(r));
-	set_ray_start(a, &r, ra);
+	set_horizontal_start(a, r, ra);
 	i = 0;
 	while (i < 8)
 	{
-		if (hit_wall_x(a, &r))
+		if (hit_wall(a, r))
 			break ;
-		draw_square(a, r.x, r.y, 3, 0xFF0000);
-		r.x += r.xoff;
-		r.y += r.yoff;
+		draw_square(a, r->x, r->y, 3, 0xFF0000);
+		r->x += r->xoff;
+		r->y += r->yoff;
 		i++;
 	}
-	draw_square(a, r.x, r.y, 3, 0x00FF00);
+	draw_square(a, r->x, r->y, 3, 0x00FF00);
+	r->hx = r->x;
+	r->hy = r->y;
+}
+
+void	vertical_check(t_data *a, t_ray *r, float ra)
+{
+	int	i;
+
+	set_vertical_start(a, r, ra);
+	i = 0;
+	while (i < 8)
+	{
+		if (hit_wall(a, r))
+			break ;
+		draw_square(a, r->x, r->y, 3, 0xFF0000);
+		r->x += r->xoff;
+		r->y += r->yoff;
+		i++;
+	}
+	draw_square(a, r->x, r->y, 3, 0x00FF00);
+	r->vx = r->x;
+	r->vy = r->y;
+}
+void	draw_ray(t_data *a, float ra)
+{
+	t_ray	r;
+
+	ft_bzero(&r, sizeof(r));
+	horizontal_check(a, &r, ra);
+	vertical_check(a, &r, ra);
 
 }

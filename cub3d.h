@@ -48,6 +48,10 @@ typedef struct s_ray
 	float	xoff;
 	float	yoff;
 	int		nope;
+	float	hx;
+	float	hy;
+	float	vx;
+	float	vy;
 }			t_ray;
 
 typedef struct s_data
