@@ -5,9 +5,11 @@
 void	init_graphics(t_data *a)
 {
 	a->mlx = mlx_init();
-	a->win = mlx_new_window(a->mlx, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
-	a->i.img = mlx_new_image(a->mlx, WIN_WIDTH, WIN_HEIGHT);
-	a->i.addr = mlx_get_data_addr(a->i.img, &a->i.bpp, &a->i.ll, &a->i.endian);
+	a->win = mlx_new_window(a->mlx, WIN_WIDTH * 2, WIN_HEIGHT, "CUB3D");
+	a->minimap.img = mlx_new_image(a->mlx, WIN_WIDTH, WIN_HEIGHT);
+	a->fp.img = mlx_new_image(a->mlx, WIN_WIDTH, WIN_HEIGHT);
+	a->minimap.addr = mlx_get_data_addr(a->minimap.img, &a->minimap.bpp, &a->minimap.ll, &a->minimap.endian);
+	a->fp.addr = mlx_get_data_addr(a->fp.img, &a->fp.bpp, &a->fp.ll, &a->fp.endian);
 }
 
 void	init_mlx_hooks(t_data *a)
@@ -52,9 +54,7 @@ void	init_game(t_data *a)
 	a->cam.color = 0xFFFF00;
 
 	init_map(a);
-	draw_map(a);
-	draw_cam(a);
-	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
+	reset_screen(a);
 }
 
 int	main(int argc, char **argv)

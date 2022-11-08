@@ -13,6 +13,7 @@ SRCS		=	main.c				\
 				keyboard.c			\
 				move.c				\
 				ray.c				\
+				draw2.c				\
 
 OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

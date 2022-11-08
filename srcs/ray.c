@@ -67,6 +67,7 @@ int	hit_wall(t_data *a, t_ray *r)
 	if (0 <= x && x < 6 && 0 <= y && y < 6 && a->map[y][x] == '1')
 	{
 		printf("ouch!\n");
+		//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
 		return (1);
 	}
 	return (0);
@@ -82,14 +83,15 @@ void	horizontal_check(t_data *a, t_ray *r, float ra)
 	{
 		if (hit_wall(a, r))
 			break ;
-		draw_square(a, r->x, r->y, 3, 0xFF0000);
+		//draw_square(&a->minimap, r->x, r->y, 3, 0xFF0000);
 		r->x += r->xoff;
 		r->y += r->yoff;
 		i++;
 	}
-	draw_square(a, r->x, r->y, 3, 0x00FF00);
+	//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
 	r->hx = r->x;
 	r->hy = r->y;
+	r->hdist = dist(a->cam.x, a->cam.y, r->hx, r->hy);
 }
 
 void	vertical_check(t_data *a, t_ray *r, float ra)
@@ -102,23 +104,36 @@ void	vertical_check(t_data *a, t_ray *r, float ra)
 	{
 		if (hit_wall(a, r))
 			break ;
-		draw_square(a, r->x, r->y, 3, 0xFF0000);
+		//draw_square(&a->minimap, r->x, r->y, 3, 0xFF0000);
 		r->x += r->xoff;
 		r->y += r->yoff;
 		i++;
 	}
-	draw_square(a, r->x, r->y, 3, 0x00FF00);
+	//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
 	r->vx = r->x;
 	r->vy = r->y;
+	r->vdist = dist(a->cam.x, a->cam.y, r->vx, r->vy);
 }
 
-void	draw_ray(t_data *a, float ra)
+void	draw_ray(t_data *a, float ra, int i)
 {
 	t_ray	r;
 
 	ft_bzero(&r, sizeof(r));
 	horizontal_check(a, &r, ra);
 	vertical_check(a, &r, ra);
+	(void)i;
+
+	if (r.hdist < r.vdist)
+	{
+		draw_column(a, r.hdist, i);
+		draw_square(&a->minimap, r.hx, r.hy, 3, 0x00FF00);
+	}
+	else
+	{
+		draw_column(a, r.vdist, i);
+		draw_square(&a->minimap, r.vx, r.vy, 3, 0x00FF00);
+	}
 }
 
 void	draw_rays(t_data *a)
@@ -128,9 +143,9 @@ void	draw_rays(t_data *a)
 
 	start_angle = add_rad(a->cam.a, -PI / 4);
 	i = 0;
-	while (i < 60)
+	while (i < 182)
 	{
-		draw_ray(a, add_rad(start_angle, i * PI / 120));
+		draw_ray(a, add_rad(start_angle, i * PI / 384), i);
 		i++;
 	}
 }

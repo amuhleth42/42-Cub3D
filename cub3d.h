@@ -52,6 +52,8 @@ typedef struct s_ray
 	float	hy;
 	float	vx;
 	float	vy;
+	float	hdist;
+	float	vdist;
 }			t_ray;
 
 typedef struct s_data
@@ -59,7 +61,8 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	char	**map;
-	t_img	i;
+	t_img	minimap;
+	t_img	fp;
 	t_cam	cam;
 }			t_data;
 
@@ -67,7 +70,7 @@ typedef struct s_data
 
 void	clear_img(t_img *i);
 void	put_pixel_to_img(t_img *i, int x, int y, int color);
-void	draw_square(t_data *a, int x, int y, int size, int color);
+void	draw_square(t_img *img, int x, int y, int size, int color);
 void	draw_cam(t_data *a);
 void	draw_map(t_data *a);
 
@@ -90,7 +93,11 @@ float	add_rad(float a1, float a2);
 
 //	ray.c
 
-void	draw_ray(t_data *a, float ra);
+void	draw_ray(t_data *a, float ra, int i);
 void	draw_rays(t_data *a);
+
+//	draw2.c
+
+void	draw_column(t_data *a, float dist, int i);
 
 #endif

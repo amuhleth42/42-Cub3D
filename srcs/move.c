@@ -14,11 +14,14 @@ float	add_rad(float a1, float a2)
 
 void	reset_screen(t_data *a)
 {
-	clear_img(a->i.img);
+	clear_img(a->minimap.img);
+	//clear_img(a->fp.img);
 	draw_map(a);
 	draw_cam(a);
+	draw_square(&a->fp, 0, 0, WIN_WIDTH, 0x0);
 	draw_rays(a);
-	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
+	mlx_put_image_to_window(a->mlx, a->win, a->minimap.img, 0, 0);
+	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, WIN_WIDTH, 0);
 }
 
 int	check_move_ok(t_data *a, float x, float y)
@@ -52,12 +55,19 @@ void	rl_move(t_data *a, int dirx, int diry)
 {
 	float	dx;
 	float	dy;
+	float	new_x;
+	float	new_y;
 
 	dx = cos(add_rad(a->cam.a, PI / 2));
 	dy = sin(add_rad(a->cam.a, PI / 2));
-	a->cam.x += dx * dirx * 4;
-	a->cam.y += dy * diry * 4;
-	reset_screen(a);
+	new_x = a->cam.x + dx * dirx * 4;
+	new_y = a->cam.y + dy * diry * 4;
+	if (check_move_ok(a, new_x, new_y))
+	{
+		a->cam.x = new_x;
+		a->cam.y = new_y;
+		reset_screen(a);
+	}
 }
 
 void	rotate(t_data *a, double da)
