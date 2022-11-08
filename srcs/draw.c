@@ -62,7 +62,6 @@ void	draw_map(t_data *a)
 
 void	draw_cam(t_data *a)
 {
-	printf("x: %d, y:, %d\n", (int)a->cam.x, (int)a->cam.y);
 	draw_square(a, a->cam.x, a->cam.y, a->cam.size, a->cam.color);
 	draw_square(a, a->cam.x + 4 + a->cam.dx * 10, a->cam.y + 4 + a->cam.dy * 10, 2, a->cam.color);
 }

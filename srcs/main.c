@@ -52,7 +52,7 @@ void	init_game(t_data *a)
 	a->cam.color = 0xFFFF00;
 
 	init_map(a);
-	//draw_map(a);
+	draw_map(a);
 	draw_cam(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
 }

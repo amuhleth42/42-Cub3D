@@ -17,6 +17,7 @@ void	reset_screen(t_data *a)
 	clear_img(a->i.img);
 	draw_map(a);
 	draw_cam(a);
+	draw_ray(a, a->cam.a);
 	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
 }
 
@@ -42,6 +43,7 @@ void	rl_move(t_data *a, int dirx, int diry)
 void	rotate(t_data *a, double da)
 {
 	a->cam.a = add_rad(a->cam.a, da);
+	printf("a: %f\n", a->cam.a);
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
 	reset_screen(a);

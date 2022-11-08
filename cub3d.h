@@ -41,6 +41,14 @@ typedef struct s_cam
 	float		a;
 }			t_cam;
 
+typedef struct s_ray
+{
+	float	x;
+	float	y;
+	float	xoff;
+	float	yoff;
+}			t_ray;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -73,5 +81,9 @@ void	move(t_data *a, int dx, int dy);
 void	rl_move(t_data *a, int dx, int dy);
 void	rotate(t_data *a, double da);
 void	reset_screen(t_data *a);
+
+//	ray.c
+
+void	draw_ray(t_data *a, float ra);
 
 #endif
