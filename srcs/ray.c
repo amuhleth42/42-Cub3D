@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 18:04:30 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:13:37 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	hit_wall(t_data *a, t_ray *r)
 	x = ((int)r->x) >> 6;
 	y = ((int)r->y) >> 6;
 	printf("Map x: %d, map y: %d\n", x, y);
-	if (0 <= x && x < 6 && 0 <= y && y < 6 && a->map.map[y][x] == '1')
+	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y && a->map.map[y][x] == '1')
 	{
 		printf("ouch!\n");
 		//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
@@ -135,12 +135,12 @@ void	draw_ray(t_data *a, float ra, int i)
 	if (r.hdist < r.vdist)
 	{
 		draw_column(a, r.hdist, i, 0x0000FF);
-		draw_square(&a->mini, r.hx, r.hy, 3, 0x00FF00);
+		//draw_square(&a->mini, r.hx, r.hy, 3, 0x00FF00);
 	}
 	else
 	{
 		draw_column(a, r.vdist, i, 0x0000AA);
-		draw_square(&a->mini, r.vx, r.vy, 3, 0x00FF00);
+		//draw_square(&a->mini, r.vx, r.vy, 3, 0x00FF00);
 	}
 }
 

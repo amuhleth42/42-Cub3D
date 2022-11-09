@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:25 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 17:38:44 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:14:49 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ float	add_rad(float a1, float a2)
 
 void	reset_screen(t_data *a)
 {
-	//clear_img(&a->mini);
+	clear_img(&a->mini);
+	clear_img(&a->fp);
 	draw_map(a);
 	draw_cam(a);
-	draw_square(&a->fp, 0, 0, WIN_WIDTH, 0x0);
 	draw_rays(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, 0, 0);
-	mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 0, 0);
+	mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 50, 50);
 }
 
 int	check_move_ok(t_data *a, float x, float y)
@@ -41,7 +41,7 @@ int	check_move_ok(t_data *a, float x, float y)
 
 	mx = ((int)x) >> 6;
 	my = ((int)y) >> 6;
-	if (0 <= mx && mx < 6 && 0 <= my && my < 6 && a->map.map[my][mx] == '1')
+	if (0 <= mx && mx < a->map.x && 0 <= my && my < a->map.y && a->map.map[my][mx] == '1')
 		return (0);
 	return (1);
 }

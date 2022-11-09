@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 17:46:04 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:11:34 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_graphics(t_data *a)
 	a->fp.img = mlx_new_image(a->mlx, a->fp.x, a->fp.y);
 	a->fp.addr = mlx_get_data_addr(a->fp.img, &a->fp.bpp, &a->fp.ll,
 			&a->fp.endian);
-	a->mini.x = WIN_WIDTH / 4;
-	a->mini.y = WIN_HEIGHT / 4;
+	a->mini.x = a->map.x * a->map.size;
+	a->mini.y = a->map.y * a->map.size;
 	a->mini.img = mlx_new_image(a->mlx, a->mini.x, a->mini.y);
 	a->mini.addr = mlx_get_data_addr(a->mini.img, &a->mini.bpp, &a->mini.ll,
 			&a->mini.endian);
@@ -46,18 +46,18 @@ void	init_map(t_data *a)
 	i = 0;
 	while (i < 6)
 	{
-		a->map.map[i] = ft_calloc(7, sizeof(char));
+		a->map.map[i] = ft_calloc(8, sizeof(char));
 		if (!a->map.map[i])
 			exit(1);
 		i++;
 	}
-	a->map.map[0] = "111111";
-	a->map.map[1] = "110001";
-	a->map.map[2] = "100001";
-	a->map.map[3] = "100101";
-	a->map.map[4] = "100001";
-	a->map.map[5] = "111111";
-	a->map.x = 6;
+	a->map.map[0] = "1111111";
+	a->map.map[1] = "1100001";
+	a->map.map[2] = "1000001";
+	a->map.map[3] = "1001001";
+	a->map.map[4] = "1000001";
+	a->map.map[5] = "1111111";
+	a->map.x = 7;
 	a->map.y = 6;
 
 	if (a->map.x <= 10 && a->map.y <= 16)
@@ -75,9 +75,8 @@ void	init_game(t_data *a)
 	a->cam.a = 0.0;
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
-	a->cam.size = 8;
+	a->cam.size = 4;
 	a->cam.color = 0xFFFF00;
-	init_map(a);
 	reset_screen(a);
 }
 
@@ -88,10 +87,8 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	ft_bzero(&a, sizeof(a));
-	ft_printf("1\n");
+	init_map(&a);
 	init_graphics(&a);
-	ft_printf("1\n");
 	init_game(&a);
-	ft_printf("1\n");
 	init_mlx_hooks(&a);
 }
