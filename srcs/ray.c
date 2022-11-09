@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 16:39:30 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/11/09 17:39:03 by amuhleth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
@@ -12,14 +22,14 @@ void	set_horizontal_start(t_data *a, t_ray *r, float ra)
 {
 	if (ra > PI)
 	{
-		r->y = (((int)a->cam.y>>6)<<6) - 0.0001;
+		r->y = (((int)a->cam.y >> 6) << 6) - 0.0001;
 		r->x = (a->cam.y - r->y) * (-1 / tan(ra)) + a->cam.x;
 		r->yoff = -64;
 		r->xoff = -r->yoff * (-1 / tan(ra));
 	}
 	else if (ra < PI)
 	{
-		r->y = (((int)a->cam.y>>6)<<6) + 64;
+		r->y = (((int)a->cam.y >> 6) << 6) + 64;
 		r->x = (a->cam.y - r->y) * (-1 / tan(ra)) + a->cam.x;
 		r->yoff = 64;
 		r->xoff = -r->yoff * (-1 / tan(ra));
@@ -36,14 +46,14 @@ void	set_vertical_start(t_data *a, t_ray *r, float ra)
 {
 	if (PI / 2 < ra && ra < 3 * PI / 2)
 	{
-		r->x = (((int)a->cam.x>>6)<<6) - 0.0001;
+		r->x = (((int)a->cam.x >> 6) << 6) - 0.0001;
 		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
 		r->xoff = -64;
 		r->yoff = -r->xoff * -tan(ra);
 	}
 	else if (3 * PI / 2 < ra || ra < PI / 2)
 	{
-		r->x = (((int)a->cam.x>>6)<<6) + 64;
+		r->x = (((int)a->cam.x >> 6) << 6) + 64;
 		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
 		r->xoff = 64;
 		r->yoff = -r->xoff * -tan(ra);
@@ -64,7 +74,7 @@ int	hit_wall(t_data *a, t_ray *r)
 	x = ((int)r->x) >> 6;
 	y = ((int)r->y) >> 6;
 	printf("Map x: %d, map y: %d\n", x, y);
-	if (0 <= x && x < 6 && 0 <= y && y < 6 && a->map[y][x] == '1')
+	if (0 <= x && x < 6 && 0 <= y && y < 6 && a->map.map[y][x] == '1')
 	{
 		printf("ouch!\n");
 		//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
@@ -122,17 +132,15 @@ void	draw_ray(t_data *a, float ra, int i)
 	ft_bzero(&r, sizeof(r));
 	horizontal_check(a, &r, ra);
 	vertical_check(a, &r, ra);
-	(void)i;
-
 	if (r.hdist < r.vdist)
 	{
 		draw_column(a, r.hdist, i, 0x0000FF);
-		draw_square(&a->minimap, r.hx, r.hy, 3, 0x00FF00);
+		draw_square(&a->mini, r.hx, r.hy, 3, 0x00FF00);
 	}
 	else
 	{
 		draw_column(a, r.vdist, i, 0x0000AA);
-		draw_square(&a->minimap, r.vx, r.vy, 3, 0x00FF00);
+		draw_square(&a->mini, r.vx, r.vy, 3, 0x00FF00);
 	}
 }
 

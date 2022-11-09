@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 16:39:25 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/11/09 17:38:44 by amuhleth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdio.h>
 #include "cub3d.h"
@@ -14,14 +25,13 @@ float	add_rad(float a1, float a2)
 
 void	reset_screen(t_data *a)
 {
-	clear_img(a->minimap.img);
-	//clear_img(a->fp.img);
+	//clear_img(&a->mini);
 	draw_map(a);
 	draw_cam(a);
 	draw_square(&a->fp, 0, 0, WIN_WIDTH, 0x0);
 	draw_rays(a);
-	mlx_put_image_to_window(a->mlx, a->win, a->minimap.img, 0, 0);
-	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, WIN_WIDTH, 0);
+	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, 0, 0);
+	mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 0, 0);
 }
 
 int	check_move_ok(t_data *a, float x, float y)
@@ -31,16 +41,16 @@ int	check_move_ok(t_data *a, float x, float y)
 
 	mx = ((int)x) >> 6;
 	my = ((int)y) >> 6;
-	if (0 <= mx && mx < 6 && 0 <= my && my < 6 && a->map[my][mx] == '1')
+	if (0 <= mx && mx < 6 && 0 <= my && my < 6 && a->map.map[my][mx] == '1')
 		return (0);
 	return (1);
-
 }
 
 void	move(t_data *a, int dirx, int diry)
 {
 	float	new_x;
 	float	new_y;
+
 	new_x = a->cam.x + a->cam.dx * dirx * 4;
 	new_y = a->cam.y + a->cam.dy * diry * 4;
 	if (check_move_ok(a, new_x, new_y))

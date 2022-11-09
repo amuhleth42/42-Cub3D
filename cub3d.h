@@ -7,8 +7,8 @@
 # include "libft.h"
 # include <math.h>
 
-# define WIN_WIDTH 384
-# define WIN_HEIGHT 384
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 800
 
 # define PI 3.1415926535
 
@@ -28,6 +28,8 @@ typedef struct s_img
 	int		bpp;
 	int		ll;
 	int		endian;
+	int		x;
+	int		y;
 }			t_img;
 
 typedef struct s_cam
@@ -56,12 +58,19 @@ typedef struct s_ray
 	float	vdist;
 }			t_ray;
 
+typedef struct s_map
+{
+	char	**map;
+	int		x;
+	int		y;
+}			t_map;
+
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-	char	**map;
-	t_img	minimap;
+	t_map	map;
+	t_img	mini;
 	t_img	fp;
 	t_cam	cam;
 }			t_data;
