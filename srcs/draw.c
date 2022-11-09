@@ -104,6 +104,19 @@ void	draw_cam(t_data *a)
 		i++;
 	}
 
+	i = 0;
+	while (i < a->cam.size - 2)
+	{
+		j = 0;
+		while (j < a->cam.size - 2)
+		{
+			put_pixel_to_img(&a->mini, j + 2 + a->cam.x / 64 * a->map.size + a->cam.dx * 5,
+					i + 2 + a->cam.y / 64 * a->map.size + a->cam.dy * 5, a->cam.color);
+			j++;
+		}
+		i++;
+	}
+
 
 
 
