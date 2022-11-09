@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:37:56 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 17:38:29 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:59:37 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	draw_map(t_data *a)
 		{
 			if (a->map.map[i][j] == '1')
 			{
-				draw_square(&a->mini, j * 64, i * 64, 64, 0x808080);
-				draw_square(&a->mini, j * 64 + 2, i * 64 + 2, 62, 0xFFFFFF);
+				draw_square(&a->mini, j * a->map.size, i * a->map.size, a->map.size, 0x808080);
+				draw_square(&a->mini, j * a->map.size + 2, i * a->map.size + 2, a->map.size - 2, 0xFFFFFF);
 			}
 			if (a->map.map[i][j] == '0')
 			{
-				draw_square(&a->mini, j * 64, i * 64, 64, 0x808080);
-				draw_square(&a->mini, j * 64 + 2, i * 64 + 2, 62, 0x000000);
+				draw_square(&a->mini, j * a->map.size, i * a->map.size, a->map.size, 0x808080);
+				draw_square(&a->mini, j * a->map.size + 2, i * a->map.size + 2, a->map.size - 2, 0x000000);
 			}
 			j++;
 		}
@@ -72,6 +72,6 @@ void	draw_map(t_data *a)
 
 void	draw_cam(t_data *a)
 {
-	draw_square(&a->mini, a->cam.x, a->cam.y, a->cam.size, a->cam.color);
-	draw_square(&a->mini, a->cam.x + 4 + a->cam.dx * 10, a->cam.y + 4 + a->cam.dy * 10, 2, a->cam.color);
+	draw_square(&a->mini, a->cam.x / 64 * a->map.size, a->cam.y / 64 * a->map.size, a->cam.size, a->cam.color);
+	//draw_square(&a->mini, a->cam.x + 4 + a->cam.dx * 10, a->cam.y + 4 + a->cam.dy * 10, 2, a->cam.color);
 }

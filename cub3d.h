@@ -12,6 +12,8 @@
 
 # define PI 3.1415926535
 
+# define VIEW_FIELD	(PI / 3)
+
 enum
 {
 	ON_KEYDOWN = 2,
@@ -63,6 +65,7 @@ typedef struct s_map
 	char	**map;
 	int		x;
 	int		y;
+	int		size;
 }			t_map;
 
 typedef struct s_data

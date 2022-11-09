@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:05 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 16:38:07 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:08:55 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ float	fix_fisheye(float dist, int i)
 {
 	float	angle;
 
-	angle = add_rad(-PI / 5, i * PI / 768);
+	angle = add_rad(-PI / 5, i * VIEW_FIELD / (WIN_WIDTH / 4));
 	return (dist * cos(angle));
 }
 
@@ -43,7 +43,7 @@ void	draw_column(t_data *a, float dist, int i, int color)
 	float	size;
 
 	dist = fix_fisheye(dist, i);
-	size = 64 * WIN_HEIGHT / 2 / dist;
+	size = 64 * WIN_HEIGHT / dist;
 	if (size > WIN_HEIGHT)
 		size = WIN_HEIGHT;
 	draw_rectangle(&a->fp, size, i, color);

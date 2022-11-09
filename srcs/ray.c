@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 17:39:03 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:04:30 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,12 +148,14 @@ void	draw_rays(t_data *a)
 {
 	float	start_angle;
 	int		i;
+	int		nb_column;
 
+	nb_column = WIN_WIDTH / 4;
 	start_angle = add_rad(a->cam.a, -PI / 5);
 	i = 0;
-	while (i < 182)
+	while (i < nb_column)
 	{
-		draw_ray(a, add_rad(start_angle, i * PI / 455), i);
+		draw_ray(a, add_rad(start_angle, i * VIEW_FIELD / nb_column), i);
 		i++;
 	}
 }

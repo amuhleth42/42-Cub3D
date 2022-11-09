@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 17:38:12 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:46:04 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ void	init_map(t_data *a)
 	a->map.map[3] = "100101";
 	a->map.map[4] = "100001";
 	a->map.map[5] = "111111";
+	a->map.x = 6;
+	a->map.y = 6;
+
+	if (a->map.x <= 10 && a->map.y <= 16)
+		a->map.size = 20;
+	else if (a->map.x <= 20 && a->map.y <= 32)
+		a->map.size = 10;
+	else if (a->map.x <= 30 && a->map.y <= 64)
+		a->map.size = 5;
 }
 
 void	init_game(t_data *a)
