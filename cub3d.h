@@ -17,6 +17,7 @@
 enum
 {
 	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
@@ -68,6 +69,16 @@ typedef struct s_map
 	int		size;
 }			t_map;
 
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}		t_keys;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -76,6 +87,7 @@ typedef struct s_data
 	t_img	mini;
 	t_img	fp;
 	t_cam	cam;
+	t_keys	keys;
 }			t_data;
 
 //	draw.c
@@ -94,6 +106,7 @@ int		red_cross(t_data *a);
 
 int		key_hook(int key, t_data *a);
 int		key_down(int key, t_data *a);
+int		key_up(int key, t_data *a);
 
 //	move.c
 

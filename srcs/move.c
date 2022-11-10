@@ -51,8 +51,8 @@ void	move(t_data *a, int dirx, int diry)
 	float	new_x;
 	float	new_y;
 
-	new_x = a->cam.x + a->cam.dx * dirx * 4;
-	new_y = a->cam.y + a->cam.dy * diry * 4;
+	new_x = a->cam.x + a->cam.dx * dirx * 3;
+	new_y = a->cam.y + a->cam.dy * diry * 3;
 	if (check_move_ok(a, new_x, new_y))
 	{
 		a->cam.x = new_x;
@@ -70,8 +70,8 @@ void	rl_move(t_data *a, int dirx, int diry)
 
 	dx = cos(add_rad(a->cam.a, PI / 2));
 	dy = sin(add_rad(a->cam.a, PI / 2));
-	new_x = a->cam.x + dx * dirx * 4;
-	new_y = a->cam.y + dy * diry * 4;
+	new_x = a->cam.x + dx * dirx * 3;
+	new_y = a->cam.y + dy * diry * 3;
 	if (check_move_ok(a, new_x, new_y))
 	{
 		a->cam.x = new_x;

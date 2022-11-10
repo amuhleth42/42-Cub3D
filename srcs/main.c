@@ -28,11 +28,29 @@ void	init_graphics(t_data *a)
 			&a->mini.endian);
 }
 
+int	loop_render(t_data *a)
+{
+	if (a->keys.w)
+		move(a, 1, 1);
+	else if (a->keys.s)
+		move(a, -1, -1);
+	if (a->keys.a)
+		rl_move(a, -1, -1);
+	else if (a->keys.d)
+		rl_move(a, 1, 1);
+	if (a->keys.left)
+		rotate(a, -0.05);
+	if (a->keys.right)
+		rotate(a, 0.05);
+	return (0);
+}
+
 void	init_mlx_hooks(t_data *a)
 {
-	mlx_key_hook(a->win, &key_hook, a);
 	mlx_hook(a->win, ON_KEYDOWN, 0, &key_down, a);
+	mlx_hook(a->win, ON_KEYUP, 0, &key_up, a);
 	mlx_hook(a->win, ON_DESTROY, 0, &red_cross, a);
+	mlx_loop_hook(a->mlx, &loop_render, a);
 	mlx_loop(a->mlx);
 }
 
