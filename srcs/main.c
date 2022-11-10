@@ -31,17 +31,18 @@ void	init_graphics(t_data *a)
 int	loop_render(t_data *a)
 {
 	if (a->keys.w)
-		move(a, 1, 1);
+		move(a, 1);
 	else if (a->keys.s)
-		move(a, -1, -1);
+		move(a, -1);
 	if (a->keys.a)
-		rl_move(a, -1, -1);
+		rl_move(a, -1);
 	else if (a->keys.d)
-		rl_move(a, 1, 1);
+		rl_move(a, 1);
 	if (a->keys.left)
 		rotate(a, -0.05);
 	if (a->keys.right)
 		rotate(a, 0.05);
+	reset_screen(a);
 	return (0);
 }
 

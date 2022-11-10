@@ -34,34 +34,70 @@ void	reset_screen(t_data *a)
 	mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 50, 50);
 }
 
-int	check_move_ok(t_data *a, float x, float y)
+int	check_move_ok(t_data *a, float x, float y, int dir)
 {
 	int	mx;
 	int	my;
+	int	offx;
+	int	offy;
 
+	if (a->cam.dx > 0)
+		offx = 20.0;
+	else
+		offx = -20.0;
+	if (a->cam.dy > 0)
+		offy = 20.0;
+	else
+		offy = -20.0;
+	x += dir * offx;
+	y += dir * offy;
 	mx = ((int)x) >> 6;
 	my = ((int)y) >> 6;
-	if (0 <= mx && mx < a->map.x && 0 <= my && my < a->map.y && a->map.map[my][mx] == '1')
-		return (0);
-	return (1);
+	if (0 <= mx && mx < a->map.x && 0 <= my && my < a->map.y && a->map.map[my][mx] == '0')
+		return (1);
+	return (0);
 }
 
-void	move(t_data *a, int dirx, int diry)
+int	check_move_ok_rl(t_data *a, float x, float y, int dir)
+{
+	float	dx;
+	float	dy;
+	int	offx;
+	int	offy;
+
+	dx = cos(add_rad(a->cam.a, PI / 2));
+	dy = sin(add_rad(a->cam.a, PI / 2));
+	if (dx > 0)
+		offx = 20.0;
+	else
+		offx = -20.0;
+	if (dy > 0)
+		offy = 20.0;
+	else
+		offy = -20.0;
+	x += dir * offx;
+	y += dir * offy;
+	x = ((int)x) >> 6;
+	y = ((int)y) >> 6;
+	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y && a->map.map[(int)y][(int)x] == '0')
+		return (1);
+	return (0);
+}
+
+void	move(t_data *a, int dir)
 {
 	float	new_x;
 	float	new_y;
 
-	new_x = a->cam.x + a->cam.dx * dirx * 3;
-	new_y = a->cam.y + a->cam.dy * diry * 3;
-	if (check_move_ok(a, new_x, new_y))
-	{
+	new_x = a->cam.x + a->cam.dx * dir * 3;
+	new_y = a->cam.y + a->cam.dy * dir * 3;
+	if (check_move_ok(a, new_x, a->cam.y, dir))
 		a->cam.x = new_x;
+	if (check_move_ok(a, a->cam.x, new_y, dir))
 		a->cam.y = new_y;
-		reset_screen(a);
-	}
 }
 
-void	rl_move(t_data *a, int dirx, int diry)
+void	rl_move(t_data *a, int dir)
 {
 	float	dx;
 	float	dy;
@@ -70,14 +106,12 @@ void	rl_move(t_data *a, int dirx, int diry)
 
 	dx = cos(add_rad(a->cam.a, PI / 2));
 	dy = sin(add_rad(a->cam.a, PI / 2));
-	new_x = a->cam.x + dx * dirx * 3;
-	new_y = a->cam.y + dy * diry * 3;
-	if (check_move_ok(a, new_x, new_y))
-	{
+	new_x = a->cam.x + dx * dir * 3;
+	new_y = a->cam.y + dy * dir * 3;
+	if (check_move_ok_rl(a, new_x, a->cam.y, dir))
 		a->cam.x = new_x;
+	if (check_move_ok_rl(a, a->cam.x, new_y, dir))
 		a->cam.y = new_y;
-		reset_screen(a);
-	}
 }
 
 void	rotate(t_data *a, double da)
@@ -86,5 +120,5 @@ void	rotate(t_data *a, double da)
 	printf("a: %f\n", a->cam.a);
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
-	reset_screen(a);
+	//reset_screen(a);
 }

@@ -110,8 +110,8 @@ int		key_up(int key, t_data *a);
 
 //	move.c
 
-void	move(t_data *a, int dx, int dy);
-void	rl_move(t_data *a, int dx, int dy);
+void	move(t_data *a, int dir);
+void	rl_move(t_data *a, int dir);
 void	rotate(t_data *a, double da);
 void	reset_screen(t_data *a);
 float	add_rad(float a1, float a2);
