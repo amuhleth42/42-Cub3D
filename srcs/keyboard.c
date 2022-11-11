@@ -58,6 +58,6 @@ int	key_up(int key, t_data *a)
 	if (key == 124)
 		a->keys.right = 0;
 	if (key == 53)
-		exit(0);
+		exit_all(a);
 	return (0);
 }

@@ -73,10 +73,8 @@ int	hit_wall(t_data *a, t_ray *r)
 
 	x = ((int)r->x) >> 6;
 	y = ((int)r->y) >> 6;
-	printf("Map x: %d, map y: %d\n", x, y);
 	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y && a->map.map[y][x] == '1')
 	{
-		printf("ouch!\n");
 		//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
 		return (1);
 	}

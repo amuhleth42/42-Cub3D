@@ -89,8 +89,8 @@ void	move(t_data *a, int dir)
 	float	new_x;
 	float	new_y;
 
-	new_x = a->cam.x + a->cam.dx * dir * 3;
-	new_y = a->cam.y + a->cam.dy * dir * 3;
+	new_x = a->cam.x + a->cam.dx * dir * 2;
+	new_y = a->cam.y + a->cam.dy * dir * 2;
 	if (check_move_ok(a, new_x, a->cam.y, dir))
 		a->cam.x = new_x;
 	if (check_move_ok(a, a->cam.x, new_y, dir))
@@ -106,8 +106,8 @@ void	rl_move(t_data *a, int dir)
 
 	dx = cos(add_rad(a->cam.a, PI / 2));
 	dy = sin(add_rad(a->cam.a, PI / 2));
-	new_x = a->cam.x + dx * dir * 3;
-	new_y = a->cam.y + dy * dir * 3;
+	new_x = a->cam.x + dx * dir * 2;
+	new_y = a->cam.y + dy * dir * 2;
 	if (check_move_ok_rl(a, new_x, a->cam.y, dir))
 		a->cam.x = new_x;
 	if (check_move_ok_rl(a, a->cam.x, new_y, dir))
@@ -117,7 +117,6 @@ void	rl_move(t_data *a, int dir)
 void	rotate(t_data *a, double da)
 {
 	a->cam.a = add_rad(a->cam.a, da);
-	printf("a: %f\n", a->cam.a);
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
 	//reset_screen(a);

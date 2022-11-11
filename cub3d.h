@@ -100,6 +100,7 @@ void	draw_map(t_data *a);
 
 //	exit.c
 
+void	exit_all(t_data *a);
 int		red_cross(t_data *a);
 
 //	keyboard.c

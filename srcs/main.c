@@ -39,9 +39,9 @@ int	loop_render(t_data *a)
 	else if (a->keys.d)
 		rl_move(a, 1);
 	if (a->keys.left)
-		rotate(a, -0.05);
+		rotate(a, -0.03);
 	if (a->keys.right)
-		rotate(a, 0.05);
+		rotate(a, 0.03);
 	reset_screen(a);
 	return (0);
 }
