@@ -71,21 +71,24 @@ void	init_map(t_data *a)
 
 void	init_tile(t_img *img, char *file, void *mlx)
 {
-	img->x = 32;
-	img->y = 32;
 	img->img = mlx_xpm_file_to_image(mlx, file, &img->x, &img->y);
 }
 
 void	init_textures(t_data *a)
 {
-	init_tile(&a->map.n, "assets/wallgrass32.xpm", a->mlx);
-	if (!a->map.n.img)
+	init_tile(&a->n, "assets/wallgrass32.xpm", a->mlx);
+	init_tile(&a->s, "assets/flower32.xpm", a->mlx);
+	init_tile(&a->e, "assets/grass32.xpm", a->mlx);
+	init_tile(&a->w, "assets/star_l_32.xpm", a->mlx);
+	/*if (!a->map.n.img)
 	{
 		ft_printf("Error: texture failed\n");
 		exit(0);
-	}
-	a->map.n.addr = mlx_get_data_addr(a->map.n.img, &a->map.n.bpp, &a->map.n.ll,
-			&a->map.n.endian);
+	}*/
+	a->n.addr = mlx_get_data_addr(a->n.img, &a->n.bpp, &a->n.ll, &a->n.endian);
+	a->s.addr = mlx_get_data_addr(a->s.img, &a->s.bpp, &a->s.ll, &a->s.endian);
+	a->e.addr = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.ll, &a->e.endian);
+	a->w.addr = mlx_get_data_addr(a->w.img, &a->w.bpp, &a->w.ll, &a->w.endian);
 }
 
 void	init_game(t_data *a)

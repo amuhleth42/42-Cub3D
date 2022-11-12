@@ -22,42 +22,37 @@ int	get_color_from_texture(t_img *i, int x, int y)
 	return (*(unsigned int *)p);
 }
 
-void	draw_rectangle(t_data *a, float size, int index, int color, t_ray *r)
+void	draw_column(t_data *a, t_ray *r, int index, t_img *img)
 {
-	int	offset;
 	int	i;
 	int	j;
-	float	step;
-	float	ty;
-	float	tyoff;
-	float	tx;
+	int	color;
 
-	
-	step = 32.0 / size;
-
-	tyoff = 0;
-	if (size > WIN_HEIGHT)
-	{
-		tyoff = (size - WIN_HEIGHT) / 2;
-		size = WIN_HEIGHT;
-	}
-	offset = WIN_HEIGHT / 2 - size / 2;
-	(void)tyoff;
-	ty = step * tyoff;
-	if (r->side == 'h')
-		tx = (int)(r->x / 2.0) % 32;
-	else
-		tx = (int)(r->y / 2.0) % 32;
 	i = 0;
-	while (i < size)
+	while (i < r->size)
 	{
 		j = 0;
-		color = get_color_from_texture(&a->map.n, tx, ty);
+		color = get_color_from_texture(img, r->tx, r->ty);
 		while (j++ < 4)
-			put_pixel_to_img(&a->fp, j - 1 + index * 4, i + offset, color);
+			put_pixel_to_img(&a->fp, j - 1 + index * 4, i + r->offset, color);
 		i++;
-		ty += step;
+		r->ty += r->step;
 	}
+}
+
+void	set_column_values(t_data *a, t_ray *r)
+{
+	(void)a;
+	r->step = 32.0 / r->size;
+	r->tyoff = 0;
+	if (r->size > WIN_HEIGHT)
+	{
+		r->tyoff = (r->size - WIN_HEIGHT) / 2;
+		r->size = WIN_HEIGHT;
+	}
+	r->offset = WIN_HEIGHT / 2 - r->size / 2;
+	r->ty = r->step * r->tyoff;
+	r->tx = (int)(r->value / 2.0) % 32;
 }
 
 float	fix_fisheye(float dist, int i)
@@ -68,12 +63,10 @@ float	fix_fisheye(float dist, int i)
 	return (dist * cos(angle));
 }
 
-void	draw_column(t_data *a, t_ray *r, int i, int color)
+void	render_column(t_data *a, t_ray *r, int i, t_img *img)
 {
-	float	size;
-	float	dist;
-
-	dist = fix_fisheye(r->dist, i);
-	size = 64 * WIN_HEIGHT / dist;
-	draw_rectangle(a, size, i, color, r);
+	r->dist = fix_fisheye(r->dist, i);
+	r->size = 64 * WIN_HEIGHT / r->dist;
+	set_column_values(a, r);
+	draw_column(a, r, i, img);
 }

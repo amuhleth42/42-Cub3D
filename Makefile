@@ -1,7 +1,6 @@
 NAME		= cub3d
 
-# FLAGS		= -Wall -Wextra -Werror -Ofast 
-FLAGS		= -Ofast 
+FLAGS		= -Wall -Wextra -Werror -Ofast 
 INCL		= -I. -I./mlx -I./libft
 LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 

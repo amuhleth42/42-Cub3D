@@ -38,7 +38,6 @@ void	set_horizontal_start(t_data *a, t_ray *r, float ra)
 	{
 		r->x = a->cam.x;
 		r->y = a->cam.y;
-		r->nope = 1;
 	}
 }
 
@@ -62,7 +61,6 @@ void	set_vertical_start(t_data *a, t_ray *r, float ra)
 	{
 		r->x = a->cam.x;
 		r->y = a->cam.y;
-		r->nope = 1;
 	}
 }
 
@@ -126,18 +124,19 @@ void	draw_ray(t_data *a, float ra, int i)
 	if (r.hdist < r.vdist)
 	{
 		r.dist = r.hdist;
-		r.x = r.hx;
-		r.y = r.hy;
-		r.side = 'h';
+		r.value = r.hx;
+		if (ra < PI)
+			render_column(a, &r, i, &a->s);
+		else	
+			render_column(a, &r, i, &a->n);
+
 	}
 	else
 	{
 		r.dist = r.vdist;
-		r.x = r.vx;
-		r.y = r.vy;
-		r.side = 'v';
+		r.value = r.vy;
+		render_column(a, &r, i, &a->e);
 	}
-	draw_column(a, &r, i, 0x0000FF);
 }
 
 void	draw_rays(t_data *a)
