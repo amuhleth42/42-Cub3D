@@ -40,10 +40,9 @@ void	draw_column(t_data *a, t_ray *r, int index, t_img *img)
 	}
 }
 
-void	set_column_values(t_data *a, t_ray *r)
+void	set_column_values(t_img *img, t_ray *r)
 {
-	(void)a;
-	r->step = 32.0 / r->size;
+	r->step = img->y / r->size;
 	r->tyoff = 0;
 	if (r->size > WIN_HEIGHT)
 	{
@@ -52,7 +51,7 @@ void	set_column_values(t_data *a, t_ray *r)
 	}
 	r->offset = WIN_HEIGHT / 2 - r->size / 2;
 	r->ty = r->step * r->tyoff;
-	r->tx = (int)(r->value / 2.0) % 32;
+	r->tx = (int)(r->value / (64 / img->x)) % img->x;
 }
 
 float	fix_fisheye(float dist, int i)
@@ -67,6 +66,6 @@ void	render_column(t_data *a, t_ray *r, int i, t_img *img)
 {
 	r->dist = fix_fisheye(r->dist, i);
 	r->size = 64 * WIN_HEIGHT / r->dist;
-	set_column_values(a, r);
+	set_column_values(img, r);
 	draw_column(a, r, i, img);
 }

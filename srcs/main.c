@@ -77,7 +77,7 @@ void	init_tile(t_img *img, char *file, void *mlx)
 void	init_textures(t_data *a)
 {
 	init_tile(&a->n, "assets/wallgrass32.xpm", a->mlx);
-	init_tile(&a->s, "assets/flower32.xpm", a->mlx);
+	init_tile(&a->s, "assets/wall_block.xpm", a->mlx);
 	init_tile(&a->e, "assets/grass32.xpm", a->mlx);
 	init_tile(&a->w, "assets/star_l_32.xpm", a->mlx);
 	/*if (!a->map.n.img)

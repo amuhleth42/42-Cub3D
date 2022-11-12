@@ -135,7 +135,10 @@ void	draw_ray(t_data *a, float ra, int i)
 	{
 		r.dist = r.vdist;
 		r.value = r.vy;
-		render_column(a, &r, i, &a->e);
+		if (PI / 2 < ra && ra < 3 * PI / 2)
+			render_column(a, &r, i, &a->w);
+		else
+			render_column(a, &r, i, &a->e);
 	}
 }
 

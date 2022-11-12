@@ -58,11 +58,11 @@ void	draw_map(t_data *a)
 		{
 			if (a->map.map[i][j] == '1')
 			{
-				draw_tile(a, j * a->map.size, i * a->map.size, 0xFFFFFF);
+				draw_tile(a, j * a->map.size, i * a->map.size, 0x22FFFFFF);
 			}
 			if (a->map.map[i][j] == '0')
 			{
-				draw_tile(a, j * a->map.size, i * a->map.size, 0xFF000000);
+				draw_tile(a, j * a->map.size, i * a->map.size, 0x99000000);
 			}
 			j++;
 		}
