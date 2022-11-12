@@ -74,10 +74,7 @@ int	hit_wall(t_data *a, t_ray *r)
 	x = ((int)r->x) >> 6;
 	y = ((int)r->y) >> 6;
 	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y && a->map.map[y][x] == '1')
-	{
-		//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
 		return (1);
-	}
 	return (0);
 }
 
@@ -91,12 +88,10 @@ void	horizontal_check(t_data *a, t_ray *r, float ra)
 	{
 		if (hit_wall(a, r))
 			break ;
-		//draw_square(&a->minimap, r->x, r->y, 3, 0xFF0000);
 		r->x += r->xoff;
 		r->y += r->yoff;
 		i++;
 	}
-	//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
 	r->hx = r->x;
 	r->hy = r->y;
 	r->hdist = dist(a->cam.x, a->cam.y, r->hx, r->hy);
@@ -112,12 +107,10 @@ void	vertical_check(t_data *a, t_ray *r, float ra)
 	{
 		if (hit_wall(a, r))
 			break ;
-		//draw_square(&a->minimap, r->x, r->y, 3, 0xFF0000);
 		r->x += r->xoff;
 		r->y += r->yoff;
 		i++;
 	}
-	//draw_square(&a->minimap, r->x, r->y, 3, 0x00FF00);
 	r->vx = r->x;
 	r->vy = r->y;
 	r->vdist = dist(a->cam.x, a->cam.y, r->vx, r->vy);
@@ -131,15 +124,9 @@ void	draw_ray(t_data *a, float ra, int i)
 	horizontal_check(a, &r, ra);
 	vertical_check(a, &r, ra);
 	if (r.hdist < r.vdist)
-	{
 		draw_column(a, r.hdist, i, 0x0000FF);
-		//draw_square(&a->mini, r.hx, r.hy, 3, 0x00FF00);
-	}
 	else
-	{
 		draw_column(a, r.vdist, i, 0x0000AA);
-		//draw_square(&a->mini, r.vx, r.vy, 3, 0x00FF00);
-	}
 }
 
 void	draw_rays(t_data *a)

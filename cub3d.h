@@ -92,7 +92,6 @@ typedef struct s_data
 
 //	draw.c
 
-void	clear_img(t_img *i);
 void	put_pixel_to_img(t_img *i, int x, int y, int color);
 void	draw_square(t_img *img, int x, int y, int size, int color);
 void	draw_cam(t_data *a);
@@ -125,5 +124,11 @@ void	draw_rays(t_data *a);
 //	draw2.c
 
 void	draw_column(t_data *a, float dist, int i, int color);
+
+//	render.c
+
+int		loop_render(t_data *a);
+void	render_frame(t_data *a);
+void	clear_img(t_img *i);
 
 #endif

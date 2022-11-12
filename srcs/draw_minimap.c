@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 void	put_pixel_to_img(t_img *i, int x, int y, int color)
 {
@@ -21,21 +20,6 @@ void	put_pixel_to_img(t_img *i, int x, int y, int color)
 		return ;
 	dst = i->addr + (y * i->ll + x * (i->bpp / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	clear_img(t_img *img)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < img->y)
-	{
-		j = 0;
-		while (j++ < img->x)
-			put_pixel_to_img(img, j, i, 0x0);
-		i++;
-	}
 }
 
 void	draw_tile(t_data *a, int x, int y, int color)
@@ -103,7 +87,6 @@ void	draw_cam(t_data *a)
 		}
 		i++;
 	}
-
 	i = 0;
 	while (i < a->cam.size - 2)
 	{
@@ -116,11 +99,4 @@ void	draw_cam(t_data *a)
 		}
 		i++;
 	}
-
-
-
-
-
-
-	//draw_square(&a->mini, a->cam.x + 4 + a->cam.dx * 10, a->cam.y + 4 + a->cam.dy * 10, 2, a->cam.color);
 }

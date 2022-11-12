@@ -14,6 +14,7 @@ SRCS		=	main.c				\
 				move.c				\
 				ray.c				\
 				draw2.c				\
+				render.c			\
 
 OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

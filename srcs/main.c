@@ -28,24 +28,6 @@ void	init_graphics(t_data *a)
 			&a->mini.endian);
 }
 
-int	loop_render(t_data *a)
-{
-	if (a->keys.w)
-		move(a, 1);
-	else if (a->keys.s)
-		move(a, -1);
-	if (a->keys.a)
-		rl_move(a, -1);
-	else if (a->keys.d)
-		rl_move(a, 1);
-	if (a->keys.left)
-		rotate(a, -0.02);
-	if (a->keys.right)
-		rotate(a, 0.02);
-	reset_screen(a);
-	return (0);
-}
-
 void	init_mlx_hooks(t_data *a)
 {
 	mlx_hook(a->win, ON_KEYDOWN, 0, &key_down, a);
@@ -96,7 +78,7 @@ void	init_game(t_data *a)
 	a->cam.dy = sin(a->cam.a);
 	a->cam.size = 4;
 	a->cam.color = 0xFFFF00;
-	reset_screen(a);
+	render_frame(a);
 }
 
 int	main(int argc, char **argv)

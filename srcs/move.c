@@ -23,17 +23,6 @@ float	add_rad(float a1, float a2)
 	return (a1);
 }
 
-void	reset_screen(t_data *a)
-{
-	clear_img(&a->mini);
-	clear_img(&a->fp);
-	draw_map(a);
-	draw_cam(a);
-	draw_rays(a);
-	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, 0, 0);
-	mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 50, 50);
-}
-
 int	check_wall(t_data *a, float x, float y)
 {
 	int	mx;
