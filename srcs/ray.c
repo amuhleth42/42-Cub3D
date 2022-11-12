@@ -149,7 +149,7 @@ void	draw_rays(t_data *a)
 	int		nb_column;
 
 	nb_column = WIN_WIDTH / 4;
-	start_angle = add_rad(a->cam.a, -PI / 5);
+	start_angle = add_rad(a->cam.a, -(VIEW_FIELD / 2));
 	i = 0;
 	while (i < nb_column)
 	{
