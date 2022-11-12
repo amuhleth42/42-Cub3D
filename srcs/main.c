@@ -78,17 +78,14 @@ void	init_tile(t_img *img, char *file, void *mlx)
 
 void	init_textures(t_data *a)
 {
-	init_tile(&a->map.n, "assets/grass32.xpm", a->mlx);
+	init_tile(&a->map.n, "assets/wallgrass32.xpm", a->mlx);
 	if (!a->map.n.img)
 	{
 		ft_printf("Error: texture failed\n");
 		exit(0);
 	}
-	ft_printf("still alive\n");
 	a->map.n.addr = mlx_get_data_addr(a->map.n.img, &a->map.n.bpp, &a->map.n.ll,
 			&a->map.n.endian);
-	ft_printf("bpp: %d\n", a->map.n.bpp);
-	ft_printf("still alive\n");
 }
 
 void	init_game(t_data *a)

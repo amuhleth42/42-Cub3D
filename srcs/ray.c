@@ -128,12 +128,14 @@ void	draw_ray(t_data *a, float ra, int i)
 		r.dist = r.hdist;
 		r.x = r.hx;
 		r.y = r.hy;
+		r.side = 'h';
 	}
 	else
 	{
 		r.dist = r.vdist;
 		r.x = r.vx;
 		r.y = r.vy;
+		r.side = 'v';
 	}
 	draw_column(a, &r, i, 0x0000FF);
 }

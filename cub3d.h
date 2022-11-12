@@ -60,6 +60,7 @@ typedef struct s_ray
 	float	hdist;
 	float	vdist;
 	float	dist;
+	char	side;
 }			t_ray;
 
 typedef struct s_map

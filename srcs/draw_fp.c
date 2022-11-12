@@ -44,7 +44,10 @@ void	draw_rectangle(t_data *a, float size, int index, int color, t_ray *r)
 	offset = WIN_HEIGHT / 2 - size / 2;
 	(void)tyoff;
 	ty = step * tyoff;
-	tx = (int)(r->x / 2.0) % 32;
+	if (r->side == 'h')
+		tx = (int)(r->x / 2.0) % 32;
+	else
+		tx = (int)(r->y / 2.0) % 32;
 	i = 0;
 	while (i < size)
 	{
