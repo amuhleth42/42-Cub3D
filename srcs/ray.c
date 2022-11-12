@@ -124,9 +124,18 @@ void	draw_ray(t_data *a, float ra, int i)
 	horizontal_check(a, &r, ra);
 	vertical_check(a, &r, ra);
 	if (r.hdist < r.vdist)
-		draw_column(a, r.hdist, i, 0x0000FF);
+	{
+		r.dist = r.hdist;
+		r.x = r.hx;
+		r.y = r.hy;
+	}
 	else
-		draw_column(a, r.vdist, i, 0x0000AA);
+	{
+		r.dist = r.vdist;
+		r.x = r.vx;
+		r.y = r.vy;
+	}
+	draw_column(a, &r, i, 0x0000FF);
 }
 
 void	draw_rays(t_data *a)

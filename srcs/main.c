@@ -69,6 +69,28 @@ void	init_map(t_data *a)
 		a->map.size = 5;
 }
 
+void	init_tile(t_img *img, char *file, void *mlx)
+{
+	img->x = 32;
+	img->y = 32;
+	img->img = mlx_xpm_file_to_image(mlx, file, &img->x, &img->y);
+}
+
+void	init_textures(t_data *a)
+{
+	init_tile(&a->map.n, "assets/grass32.xpm", a->mlx);
+	if (!a->map.n.img)
+	{
+		ft_printf("Error: texture failed\n");
+		exit(0);
+	}
+	ft_printf("still alive\n");
+	a->map.n.addr = mlx_get_data_addr(a->map.n.img, &a->map.n.bpp, &a->map.n.ll,
+			&a->map.n.endian);
+	ft_printf("bpp: %d\n", a->map.n.bpp);
+	ft_printf("still alive\n");
+}
+
 void	init_game(t_data *a)
 {
 	a->cam.x = 170.0;
@@ -90,6 +112,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&a, sizeof(a));
 	init_map(&a);
 	init_graphics(&a);
+	init_textures(&a);
 	init_game(&a);
 	init_mlx_hooks(&a);
 }

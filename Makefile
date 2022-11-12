@@ -1,6 +1,7 @@
 NAME		= cub3d
 
-FLAGS		= -Wall -Wextra -Werror -Ofast
+# FLAGS		= -Wall -Wextra -Werror -Ofast 
+FLAGS		= -Ofast 
 INCL		= -I. -I./mlx -I./libft
 LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
@@ -8,12 +9,12 @@ SRCS_DIR	= srcs
 OBJS_DIR	= $(shell mkdir -p objs && printf "objs")
 
 SRCS		=	main.c				\
-				draw.c				\
+				draw_fp.c			\
+				draw_minimap.c		\
 				exit.c				\
 				keyboard.c			\
 				move.c				\
 				ray.c				\
-				draw2.c				\
 				render.c			\
 
 OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)

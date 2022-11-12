@@ -59,6 +59,7 @@ typedef struct s_ray
 	float	vy;
 	float	hdist;
 	float	vdist;
+	float	dist;
 }			t_ray;
 
 typedef struct s_map
@@ -67,6 +68,7 @@ typedef struct s_map
 	int		x;
 	int		y;
 	int		size;
+	t_img	n;
 }			t_map;
 
 typedef struct s_keys
@@ -123,7 +125,7 @@ void	draw_rays(t_data *a);
 
 //	draw2.c
 
-void	draw_column(t_data *a, float dist, int i, int color);
+void	draw_column(t_data *a, t_ray *r, int i, int color);
 
 //	render.c
 

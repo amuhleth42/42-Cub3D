@@ -12,21 +12,48 @@
 
 #include "cub3d.h"
 
-void	draw_rectangle(t_img *img, float size, int index, int color)
+int	get_color_from_texture(t_img *i, int x, int y)
+{
+	char	*p;
+
+	if (x < 0 || i->x <= x || y < 0 || i->y < y)
+		return (0);
+	p = i->addr + (y * i->ll + x * (i->bpp / 8));
+	return (*(unsigned int *)p);
+}
+
+void	draw_rectangle(t_data *a, float size, int index, int color, t_ray *r)
 {
 	int	offset;
 	int	i;
 	int	j;
+	float	step;
+	float	ty;
+	float	tyoff;
+	float	tx;
 
+	
+	step = 32.0 / size;
+
+	tyoff = 0;
+	if (size > WIN_HEIGHT)
+	{
+		tyoff = (size - WIN_HEIGHT) / 2;
+		size = WIN_HEIGHT;
+	}
 	offset = WIN_HEIGHT / 2 - size / 2;
-	//offset = 0;
+	(void)tyoff;
+	ty = step * tyoff;
+	tx = (int)(r->x / 2.0) % 32;
 	i = 0;
 	while (i < size)
 	{
 		j = 0;
+		color = get_color_from_texture(&a->map.n, tx, ty);
 		while (j++ < 4)
-			put_pixel_to_img(img, j + index * 4, i + offset, color);
+			put_pixel_to_img(&a->fp, j - 1 + index * 4, i + offset, color);
 		i++;
+		ty += step;
 	}
 }
 
@@ -38,13 +65,12 @@ float	fix_fisheye(float dist, int i)
 	return (dist * cos(angle));
 }
 
-void	draw_column(t_data *a, float dist, int i, int color)
+void	draw_column(t_data *a, t_ray *r, int i, int color)
 {
 	float	size;
+	float	dist;
 
-	dist = fix_fisheye(dist, i);
+	dist = fix_fisheye(r->dist, i);
 	size = 64 * WIN_HEIGHT / dist;
-	if (size > WIN_HEIGHT)
-		size = WIN_HEIGHT;
-	draw_rectangle(&a->fp, size, i, color);
+	draw_rectangle(a, size, i, color, r);
 }
