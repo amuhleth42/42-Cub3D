@@ -19,7 +19,7 @@ int	get_color_from_texture(t_img *i, int x, int y)
 	if (x < 0 || i->x <= x || y < 0 || i->y < y)
 		return (0);
 	p = i->addr + (y * i->ll + x * (i->bpp / 8));
-	return (*(unsigned int *)p);
+	return (*(unsigned int *)p & 0x00FFFFFF);
 }
 
 void	draw_column(t_data *a, t_ray *r, int index, t_img *img)
@@ -33,8 +33,8 @@ void	draw_column(t_data *a, t_ray *r, int index, t_img *img)
 	{
 		j = 0;
 		color = get_color_from_texture(img, r->tx, r->ty);
-		while (j++ < 4)
-			put_pixel_to_img(&a->fp, j - 1 + index * 4, i + r->offset, color);
+		while (j++ < COLUMN_SIZE)
+			put_pixel_to_img(&a->fp, j - 1 + index * COLUMN_SIZE, i + r->offset, color);
 		i++;
 		r->ty += r->step;
 	}
@@ -58,7 +58,7 @@ float	fix_fisheye(float dist, int i)
 {
 	float	angle;
 
-	angle = add_rad(-PI / 5, i * VIEW_FIELD / (WIN_WIDTH / 4));
+	angle = add_rad(-PI / 5, i * VIEW_FIELD / (WIN_WIDTH / COLUMN_SIZE));
 	return (dist * cos(angle));
 }
 

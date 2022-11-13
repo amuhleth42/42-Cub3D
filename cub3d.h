@@ -13,6 +13,7 @@
 # define PI 3.1415926535
 
 # define VIEW_FIELD	(PI / 3)
+# define COLUMN_SIZE 2
 
 enum
 {
