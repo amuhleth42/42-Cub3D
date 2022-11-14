@@ -6,21 +6,11 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:37:56 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 19:09:24 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:23:32 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	put_pixel_to_img(t_img *i, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || i->x <= x || y < 0 || i->y <= y)
-		return ;
-	dst = i->addr + (y * i->ll + x * (i->bpp / 8));
-	*(unsigned int *)dst = color;
-}
 
 void	draw_tile(t_data *a, int x, int y, int color)
 {
@@ -32,7 +22,7 @@ void	draw_tile(t_data *a, int x, int y, int color)
 	{
 		j = 0;
 		while (j++ < a->map.size)
-			put_pixel_to_img(&a->mini, x + j, y + i, 0x808080);
+			put_pixel(&a->mini, x + j - 1, y + i, 0x808080);
 		i++;
 	}
 	i = 1;
@@ -40,7 +30,7 @@ void	draw_tile(t_data *a, int x, int y, int color)
 	{
 		j = 1;
 		while (j++ < a->map.size - 1)
-			put_pixel_to_img(&a->mini, x + j, y + i, color);
+			put_pixel(&a->mini, x + j - 1, y + i, color);
 		i++;
 	}
 }
@@ -79,12 +69,9 @@ void	draw_cam(t_data *a)
 	while (i < a->cam.size)
 	{
 		j = 0;
-		while (j < a->cam.size)
-		{
-			put_pixel_to_img(&a->mini, j + a->cam.x / 64 * a->map.size,
-					i + a->cam.y / 64 * a->map.size, a->cam.color);
-			j++;
-		}
+		while (j++ < a->cam.size)
+			put_pixel(&a->mini, j - 1 + a->cam.x / 64 * a->map.size,
+				i + a->cam.y / 64 * a->map.size, a->cam.color);
 		i++;
 	}
 	i = 0;
@@ -93,8 +80,8 @@ void	draw_cam(t_data *a)
 		j = 0;
 		while (j < a->cam.size - 2)
 		{
-			put_pixel_to_img(&a->mini, j + a->cam.x / 64 * a->map.size + a->cam.dx * 5,
-					i + a->cam.y / 64 * a->map.size + a->cam.dy * 5, a->cam.color);
+			put_pixel(&a->mini, j + a->cam.x / 64 * a->map.size + a->cam.dx * 5,
+				i + a->cam.y / 64 * a->map.size + a->cam.dy * 5, a->cam.color);
 			j++;
 		}
 		i++;

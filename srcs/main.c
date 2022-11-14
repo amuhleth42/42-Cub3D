@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 19:11:34 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:19:26 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	init_map(t_data *a)
 	a->map.map[5] = "1111111";
 	a->map.x = 7;
 	a->map.y = 6;
-
+	a->map.floor = 0xAAAAAA;
+	a->map.ceiling = 0x666666;
 	if (a->map.x <= 10 && a->map.y <= 16)
 		a->map.size = 20;
 	else if (a->map.x <= 20 && a->map.y <= 32)

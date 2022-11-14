@@ -6,22 +6,12 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:25 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 19:14:49 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:26:34 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "cub3d.h"
-
-float	add_rad(float a1, float a2)
-{
-	a1 += a2;
-	if (a1 < 0.0)
-		a1 += 2 * PI;
-	else if (a1 >= 2 * PI)
-		a1 -= 2 * PI;
-	return (a1);
-}
 
 int	check_wall(t_data *a, float x, float y)
 {
@@ -30,7 +20,8 @@ int	check_wall(t_data *a, float x, float y)
 
 	mx = ((int)x) >> 6;
 	my = ((int)y) >> 6;
-	if (0 <= mx && mx < a->map.x && 0 <= my && my < a->map.y && a->map.map[my][mx] == '0')
+	if (0 <= mx && mx < a->map.x && 0 <= my && my < a->map.y
+		&& a->map.map[my][mx] == '0')
 		return (1);
 	return (0);
 }
@@ -81,5 +72,4 @@ void	rotate(t_data *a, double da)
 	a->cam.a = add_rad(a->cam.a, da);
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
-	//reset_screen(a);
 }

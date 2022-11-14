@@ -13,7 +13,7 @@
 # define PI 3.1415926535
 
 # define VIEW_FIELD	(PI / 3)
-# define COLUMN_SIZE 2
+# define COLUMN_SIZE 8
 
 enum
 {
@@ -76,7 +76,8 @@ typedef struct s_map
 	int		x;
 	int		y;
 	int		size;
-	t_img	n;
+	int		floor;
+	int		ceiling;
 }			t_map;
 
 typedef struct s_keys
@@ -104,12 +105,27 @@ typedef struct s_data
 	t_img	w;
 }			t_data;
 
-//	draw.c
+//	utils.c
 
-void	put_pixel_to_img(t_img *i, int x, int y, int color);
-void	draw_square(t_img *img, int x, int y, int size, int color);
+void	put_pixel(t_img *i, int x, int y, int color);
+float	add_rad(float a1, float a2);
+float	dist(float ax, float ay, float bx, float by);
+
+//	draw_minimap.c
+
 void	draw_cam(t_data *a);
 void	draw_map(t_data *a);
+void	draw_tile(t_data *a, int x, int y, int color);
+
+//	render_column.c
+
+void	render_column(t_data *a, t_ray *r, int i, t_img *img);
+
+//	draw_column.c
+
+void	draw_ceiling(t_data *a, t_ray *r, int index);
+void	draw_column(t_data *a, t_ray *r, int index, t_img *img);
+void	draw_floor(t_data *a, t_ray *r, int index);
 
 //	exit.c
 
@@ -118,7 +134,6 @@ int		red_cross(t_data *a);
 
 //	keyboard.c
 
-int		key_hook(int key, t_data *a);
 int		key_down(int key, t_data *a);
 int		key_up(int key, t_data *a);
 
@@ -132,12 +147,15 @@ float	add_rad(float a1, float a2);
 
 //	ray.c
 
-void	draw_ray(t_data *a, float ra, int i);
-void	draw_rays(t_data *a);
+void	cast_ray(t_data *a, float ra, int i);
+void	raycasting(t_data *a);
 
-//	draw2.c
+//	ray2.c
 
-void	render_column(t_data *a, t_ray *r, int i, t_img *img);
+void	set_horizontal_start(t_data *a, t_ray *r, float ra);
+void	set_vertical_start(t_data *a, t_ray *r, float ra);
+void	horizontal_check(t_data *a, t_ray *r, float ra);
+void	vertical_check(t_data *a, t_ray *r, float ra);
 
 //	render.c
 

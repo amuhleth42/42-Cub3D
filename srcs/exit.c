@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 16:38:14 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:15:55 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	exit_all(t_data *a)
 	mlx_destroy_image(a->mlx, a->mini.img);
 	mlx_destroy_image(a->mlx, a->fp.img);
 	exit(EXIT_SUCCESS);
-
 }
 
 int	red_cross(t_data *a)

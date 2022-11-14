@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:18 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/09 16:39:13 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:16:07 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 
 int	key_down(int key, t_data *a)
 {
-	/*if (key == 13)
-		move(a, 1, 1);
-	if (key == 1)
-		move(a, -1, -1);
-	if (key == 0)
-		rl_move(a, -1, -1);
-	if (key == 2)
-		rl_move(a, 1, 1);
-	if (key == 123)
-		rotate(a, -0.1);
-	if (key == 124)
-		rotate(a, 0.1);*/
-		
 	if (key == 13)
 		a->keys.w = 1;
 	if (key == 1)
