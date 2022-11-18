@@ -119,7 +119,7 @@ void	draw_tile(t_data *a, int x, int y, int color);
 
 //	render_column.c
 
-void	render_column(t_data *a, t_ray *r, int i, t_img *img);
+void	render_column(t_data *a, t_ray *r, int i, t_img *img, int invert);
 
 //	draw_column.c
 
