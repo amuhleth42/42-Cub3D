@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 15:45:18 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:57:14 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	cast_ray(t_data *a, float ra, int i)
 		r.dist = r.hdist;
 		r.value = r.hx;
 		if (ra < PI)
-			render_column(a, &r, i, &a->s);
+			render_column(a, &r, i, &a->s, 1);
 		else
-			render_column(a, &r, i, &a->n);
+			render_column(a, &r, i, &a->n, 0);
 	}
 	else
 	{
 		r.dist = r.vdist;
 		r.value = r.vy;
 		if (PI / 2 < ra && ra < 3 * PI / 2)
-			render_column(a, &r, i, &a->w);
+			render_column(a, &r, i, &a->w, 1);
 		else
-			render_column(a, &r, i, &a->e);
+			render_column(a, &r, i, &a->e, 0);
 	}
 }
 
