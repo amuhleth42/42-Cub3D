@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:36:13 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 15:41:11 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:42:45 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	horizontal_check(t_data *a, t_ray *r, float ra)
 
 	set_horizontal_start(a, r, ra);
 	i = 0;
-	while (i < 8)
+	while (i < a->map.y)
 	{
 		if (hit_wall(a, r))
 			break ;
@@ -96,7 +96,7 @@ void	vertical_check(t_data *a, t_ray *r, float ra)
 
 	set_vertical_start(a, r, ra);
 	i = 0;
-	while (i < 8)
+	while (i < a->map.x)
 	{
 		if (hit_wall(a, r))
 			break ;

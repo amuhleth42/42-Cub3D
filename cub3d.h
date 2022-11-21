@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:15:22 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 17:00:00 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:44:48 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 # define PI 3.1415926535
 
 # define VIEW_FIELD	(PI / 3)
-# define COLUMN_SIZE 8
+# define COLUMN_SIZE 2
+
+# define      COL_RED        "\033[31;1m"
+# define      COL_RES        "\033[0m"
 
 enum
 {
@@ -231,9 +234,6 @@ void	clear_img(t_img *i);
 
 
 //	parser.h
-
-# define      COL_RED        "\033[31;1m"
-# define      COL_RES        "\033[0m"
 
 /*	parser_main.c */
 char	**read_file(char *path, t_data *a);
