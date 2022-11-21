@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:41 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 15:22:01 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:13:27 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	manage_digit_color(char *str1, char *str2, char *str3)
 		return (1);
 	return (0);
 }
-//	printf("%d	%d	%d\n", ft_atoi(str1), ft_atoi(str2), ft_atoi(str3));
 
 int	check_space_color(char *array)
 {
@@ -81,8 +80,6 @@ int	check_space_color(char *array)
 	}
 	return (0);
 }
-//	if (!check_path(str[1]))
-//		return (NULL);
 
 int	check_code_c(t_color *color, char *str)
 {
@@ -119,4 +116,3 @@ int	manage_path_dirct_c(t_color *color, t_text *dirct, char *str, int ret)
 	}
 	return (0);
 }
-//	printf("check_S %s\n", str);

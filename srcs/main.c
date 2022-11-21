@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 23:02:38 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:07:48 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	init_mlx_hooks(t_data *a)
 
 void	check_map_pouet(t_data *a)
 {
-	/*a->map.floor = 0xAAAAAA;
-	a->map.ceiling = 0x666666;*/
+	a->map.floor = 0xAAAAAA;
+	a->map.ceiling = 0x666666;
 	if (a->map.x <= 10 && a->map.y <= 16)
 		a->map.size = 20;
 	else if (a->map.x <= 20 && a->map.y <= 32)

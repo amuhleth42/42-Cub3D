@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:05:31 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 16:11:44 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:13:45 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,10 @@ int	check_color(char *array, t_text *dirct, t_color *color)
 		manage_path_dirct_c(color, dirct, tmp_color, 1);
 	else if (!ft_strncmp(array, "C", 1))
 		manage_path_dirct_c(color, dirct, tmp_color, 2);
-	printf("F=%d	C=%d\n", dirct->f, dirct->c);
 	if (dirct->f == 1 && dirct->c == 1)
 		return (2);
 	return (0);
 }
-//	printf("len array = %lu	%s\n", ft_strlen(array), array);
 
 int	parse_colors(t_args *input)
 {

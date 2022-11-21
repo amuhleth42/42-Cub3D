@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:14:50 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 16:33:41 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:12:10 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ int	parse_map_size(char **lines, t_map *map)
 	int	x_tmp;
 	int	i;
 
-	printf("alive?\n");
 	x_max = 0;
 	i = 0;
-	printf("%s\n", lines[i]);
 	while (lines[i])
 	{
 		x_tmp = ft_strlen(lines[i]);
