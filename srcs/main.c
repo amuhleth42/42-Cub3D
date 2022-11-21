@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 17:00:55 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:06:29 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_textures(t_data *a)
 	init_tile(&a->s, a->sprite.so, a->mlx);
 	init_tile(&a->e, a->sprite.ea, a->mlx);
 	init_tile(&a->w, a->sprite.we, a->mlx);
-	if (!a->n.img)
+	if (!a->n.img || !a->s.img || !a->e.img || !a->w.img)
 	{
 		ft_printf("Error: texture failed\n");
 		exit(0);
