@@ -6,7 +6,7 @@
 #    By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:03:47 by amuhleth          #+#    #+#              #
-#    Updated: 2022/11/21 17:04:25 by amuhleth         ###   ########.fr        #
+#    Updated: 2022/11/21 22:39:26 by amuhleth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,10 +67,12 @@ libft.a :
 libmlx.a :
 	make -C ./mlx
 
-clean :
+sclean :
+	rm -rf $(OBJS)
+
+clean : sclean
 	make fclean -C ./libft
 	make clean -C ./mlx
-	rm -rf $(OBJS)
 
 fclean : clean
 	rm -rf $(NAME)

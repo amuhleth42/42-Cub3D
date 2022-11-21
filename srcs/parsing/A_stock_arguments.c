@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:16:13 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 16:08:13 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:51:28 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	fill_input(char **file_data, t_args *input)
 int	parse_arguments(t_data *a, t_args *input)
 {
 	if (parse_input_size(a->file_data, input))
-		quit(a, "crash because of size\n");
+		quit(a, "Error: invalid map, size null");
 	if (create_input(input))
-		quit(a, "crash because of creation tab\n");
+		quit(a, "Error: failed to create map array");
 	fill_input(a->file_data, input);
 	return (0);
 }

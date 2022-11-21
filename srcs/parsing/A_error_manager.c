@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:37:54 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 16:09:01 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:53:38 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,10 @@
 
 int	manage_args(t_data *a, int ac, char **av)
 {
-	int	i;
-
-	i = -1;
 	if (ac != 2)
 		quit(a, "Please enter a map as an argument !");
-	if (av[0])
-	{
-		while (av[++i])
-		{
-			if (!av[i])
-			{
-				quit(a, "arguments is NULL\n");
-				return (1);
-			}
-		}
-	}
+	if (!av[1])
+		quit(a, "Error: argument is NULL");
 	return (0);
 }
 

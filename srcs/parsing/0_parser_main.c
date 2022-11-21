@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:37:00 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 22:20:57 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:47:55 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ char	**read_file(char *path, t_data *a)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		quit(a, "open : an error occured when opening file.\n");
+		quit(a, "Error: open failed");
 	line = ft_strtrim(get_next_line(fd), "\n");
 	if (!line)
-		quit(a, "parsing : empty file.\n");
+		quit(a, "Error: parsing: empty file");
 	lines = NULL;
 	while (line)
 	{
@@ -65,10 +65,10 @@ int	parser(int ac, char **av, t_data *a)
 	parse_arguments(a, &a->input);
 	line_array = calculat_h(a->file_data);
 	if (parse_sprite(&a->input, &a->sprite))
-		quit(a, "Parse sprite failed\n");
+		quit(a, "Error: Parse sprite failed");
 	if (parse_colors(&a->input))
-		quit(a, "Parse colors failed\n");
+		quit(a, "Error: Parse colors failed");
 	if (parse_map(a->file_data + line_array, &a->cam, &a->map))
-		quit(a, "Parse map failed\n");
+		quit(a, "Error: Parse map failed");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:15:22 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 17:44:48 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:44:52 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define PI 3.1415926535
 
-# define VIEW_FIELD	(PI / 3)
+# define VIEW_FIELD	PI/3
 # define COLUMN_SIZE 2
 
 # define      COL_RED        "\033[31;1m"
@@ -57,8 +57,8 @@ typedef struct s_cam
 {
 	float		x;
 	float		y;
-	int		size;
-	int		color;
+	int			size;
+	int			color;
 	float		dx;
 	float		dy;
 	float		a;
@@ -154,21 +154,21 @@ typedef struct s_text
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	t_map	map;
-	t_img	mini;
-	t_img	fp;
-	t_cam	cam;
-	t_keys	keys;
-	t_args	input;
+	void		*mlx;
+	void		*win;
+	t_map		map;
+	t_img		mini;
+	t_img		fp;
+	t_cam		cam;
+	t_keys		keys;
+	t_args		input;
 	t_sprite	sprite;
-	char	**file_data;
-	t_img	n;
-	t_img	s;
-	t_img	e;
-	t_img	w;
-}			t_data;
+	char		**file_data;
+	t_img		n;
+	t_img		s;
+	t_img		e;
+	t_img		w;
+}				t_data;
 
 //	utils.c
 
@@ -231,7 +231,6 @@ void	vertical_check(t_data *a, t_ray *r, float ra);
 int		loop_render(t_data *a);
 void	render_frame(t_data *a);
 void	clear_img(t_img *i);
-
 
 //	parser.h
 

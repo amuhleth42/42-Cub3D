@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:17:58 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 22:28:51 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:56:55 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ int	fill_map(char **lines, t_map *map, t_cam *cam)
 			else if (ft_isalpha(lines[map->y][map->x]))
 			{
 				if (parse_player(lines[map->y][map->x], map->y, map->x, cam))
-					return (manage_map_error(lines[map->y], map->y + 1, map->x, 1));
+					return (manage_map_error(lines[map->y],
+							map->y + 1, map->x, 1));
 				++player_found;
 				map->map[map->y][map->x] = '0';
 			}

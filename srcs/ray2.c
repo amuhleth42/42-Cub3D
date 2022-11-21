@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:36:13 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 17:42:45 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:01:41 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_horizontal_start(t_data *a, t_ray *r, float ra)
 {
 	if (ra > PI)
 	{
-		r->y = (((int)a->cam.y >> 6) << 6) - 0.0001;
+		r->y = (((int)a->cam.y >> 6) << 6) - 0.01;
 		r->x = (a->cam.y - r->y) * (-1 / tan(ra)) + a->cam.x;
 		r->yoff = -64;
 		r->xoff = -r->yoff * (-1 / tan(ra));
@@ -39,7 +39,7 @@ void	set_vertical_start(t_data *a, t_ray *r, float ra)
 {
 	if (PI / 2 < ra && ra < 3 * PI / 2)
 	{
-		r->x = (((int)a->cam.x >> 6) << 6) - 0.0001;
+		r->x = (((int)a->cam.x >> 6) << 6) - 0.01;
 		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
 		r->xoff = -64;
 		r->yoff = -r->xoff * -tan(ra);
