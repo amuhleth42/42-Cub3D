@@ -68,6 +68,7 @@ typedef struct s_ray
 	float	ty;
 	float	tyoff;
 	float	value;
+	int		i;
 }			t_ray;
 
 typedef struct s_map
@@ -119,7 +120,7 @@ void	draw_tile(t_data *a, int x, int y, int color);
 
 //	render_column.c
 
-void	render_column(t_data *a, t_ray *r, int i, t_img *img, int invert);
+void	render_column(t_data *a, t_ray *r, t_img *img, int invert);
 
 //	draw_column.c
 
