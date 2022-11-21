@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 15:15:22 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/11/21 17:00:00 by amuhleth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -6,6 +16,10 @@
 # include "mlx.h"
 # include "libft.h"
 # include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 800
@@ -91,6 +105,50 @@ typedef struct s_keys
 	int	right;
 }		t_keys;
 
+typedef struct s_tools
+{
+	int	len;
+	int	idx;
+	int	x;
+	int	y;
+	int	hparams;
+}	t_tools;
+
+typedef struct s_args
+{
+	char	**input;
+	int		x;
+	int		y;
+}	t_args;
+
+typedef struct s_color
+{
+	int		x;
+	int		y;
+	char	*c;
+	char	*f;
+}	t_color;
+
+typedef struct s_sprite
+{
+	int		x;
+	int		y;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}	t_sprite;
+
+typedef struct s_text
+{
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
+}	t_text;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -100,6 +158,9 @@ typedef struct s_data
 	t_img	fp;
 	t_cam	cam;
 	t_keys	keys;
+	t_args	input;
+	t_sprite	sprite;
+	char	**file_data;
 	t_img	n;
 	t_img	s;
 	t_img	e;
@@ -133,6 +194,10 @@ void	draw_floor(t_data *a, t_ray *r, int index);
 void	exit_all(t_data *a);
 int		red_cross(t_data *a);
 
+//	error.c
+
+void	quit(t_data *a, char *message);
+
 //	keyboard.c
 
 int		key_down(int key, t_data *a);
@@ -163,5 +228,76 @@ void	vertical_check(t_data *a, t_ray *r, float ra);
 int		loop_render(t_data *a);
 void	render_frame(t_data *a);
 void	clear_img(t_img *i);
+
+
+//	parser.h
+
+# define      COL_RED        "\033[31;1m"
+# define      COL_RES        "\033[0m"
+
+/*	parser_main.c */
+char	**read_file(char *path, t_data *a);
+char	**lst_to_split(t_list *lines);
+int		parser(int ac, char **av, t_data *a);
+
+/*	parser_color.c */
+int		parse_colors(t_args *input);
+int		check_color(char *array, t_text *dirct, t_color *color);
+int		check_the_rest_color(char *input);
+
+/*	checker_color.c */
+int		manage_path_dirct_c(t_color *color, t_text *dirct, char *str, int ret);
+int		check_code_c(t_color *color, char *str);
+int		check_space_color(char *array);
+int		manage_digit_color(char *str1, char *str2, char *str3);
+int		travel_number(char *str1, char *str2, char *str3);
+
+/*	parser_sprite.c */
+int		parse_sprite(t_args *input, t_sprite *sprite);
+int		check_sprite(char *array, t_text *dirct, t_sprite *sprite);
+int		check_the_rest_sprite(char *input);
+
+/*	checker_sprite.c */
+int		manage_path_dirct_s(t_sprite *sprite, t_text *dirct, char *str, int r);
+int		check_path_s(t_sprite *sprite, char *str, int ret);
+char	check_path(char *array);
+
+/*	parser_map.c */
+int		parse_map(char **lines, t_cam *cam, t_map *map);
+int		check_map(t_map *map);
+
+/*	stock_arguments.c */
+void	fill_input(char **file_data, t_args *input);
+int		create_input(t_args *input);
+void	reset_input(t_args *input);
+int		parse_input_size(char **file_data, t_args *input);
+int		parse_arguments(t_data *a, t_args *input);
+
+/*	stock_map.c */
+int		fill_map(char **lines, t_map *map, t_cam *cam);
+int		parse_player(char c, int y, int x, t_cam *cam);
+int		create_map(t_map *map);
+void	reset_map(t_map *map);
+
+/*	tools_fcts.c */
+t_text	struct_init(t_text *dirct);
+char	*check_space(char *array, int ret);
+void	print_map(t_map *pars);
+int		find_first_occurrence(t_args *input);
+
+/*	height_calculator.c */
+int		parse_map_size(char **lines, t_map *map);
+int		calculat_h(char **file_data);
+
+/*	error_manager */
+int		manage_args(t_data *a, int ac, char **av);
+int		print_error(int ret, int cause);
+int		manage_map_error(char *line, int y, int x, int err);
+
+/*	color.c */
+void	colorTheChar(char **tab, int H, int L);
+void	colorFirst(char *str);
+void	colorTheRest(char *str, int H, int index);
+void	colorLast(char *str, int H);
 
 #endif

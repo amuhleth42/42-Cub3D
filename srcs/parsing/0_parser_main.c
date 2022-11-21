@@ -6,11 +6,11 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:37:00 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 11:37:06 by kdi-noce         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:58:38 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
 char	**lst_to_split(t_list *lines)
 {
@@ -31,7 +31,6 @@ char	**lst_to_split(t_list *lines)
 	return (map);
 }
 
-//		exit_all(a);
 char	**read_file(char *path, t_data *a)
 {
 	t_list	*lines;
@@ -39,15 +38,12 @@ char	**read_file(char *path, t_data *a)
 	char	*line;
 	int		fd;
 
-	(void) a;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		printf("open : an error occured when opening file.\n", stderr);
+		quit(a, "open : an error occured when opening file.\n");
 	line = ft_strtrim(get_next_line(fd), "\n");
 	if (!line)
-	{
-		printf("parsing : empty file.\n", stderr);
-	}
+		quit(a, "parsing : empty file.\n");
 	lines = NULL;
 	while (line)
 	{
@@ -60,23 +56,27 @@ char	**read_file(char *path, t_data *a)
 	return (map);
 }
 
-int	main(int ac, char **av)
+int	parser(int ac, char **av, t_data *a)
 {
-	t_data		data;
-	t_args		input;
-	t_sprite	sprite;
-	char		**file_data;
 	int			line_array;
+	int			i;
 
-	manage_args(ac, av);
-	file_data = read_file(av[1], &data);
-	print_error(0, parse_arguments(file_data, &input));
-	line_array = calculat_h(file_data);
-	if (parse_sprite(&input, &sprite))
-		print_error(2, 0);
-	if (parse_colors(&input))
-		print_error(4, 0);
-	if (parse_map(file_data + line_array, &data.cam, &data.map))
-		print_error(5, 0);
+	i = -1;
+	manage_args(a, ac, av);
+	a->file_data = read_file(av[1], a);
+	while (a->file_data[++i])
+		printf("file data: %s\n", a->file_data[i]);
+	parse_arguments(a, &a->input);
+	line_array = calculat_h(a->file_data);
+	printf("line array: %d\n", line_array);
+	if (parse_sprite(&a->input, &a->sprite))
+		quit(a, "Parse sprite failed\n");
+	printf("yo\n");
+	if (parse_colors(&a->input))
+		quit(a, "Parse colors failed\n");
+	printf("yo\n");
+	if (parse_map(a->file_data + line_array, &a->cam, &a->map))
+		quit(a, "Parse map failed\n");
+	printf("yo\n");
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:05:31 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 14:05:33 by kdi-noce         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:11:44 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
 int	check_the_rest_color(char *input)
 {
@@ -71,6 +71,6 @@ int	parse_colors(t_args *input)
 		input->y++;
 	}
 	if (idx_color != 2)
-		print_error(3, 0);
+		return (1);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:17:58 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 14:18:00 by kdi-noce         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:22:28 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
 void	reset_map(t_map *map)
 {

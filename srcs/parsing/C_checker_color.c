@@ -6,11 +6,11 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:41 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 14:11:45 by kdi-noce         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:22:01 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
 int	travel_number(char *str1, char *str2, char *str3)
 {

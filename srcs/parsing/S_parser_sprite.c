@@ -6,11 +6,11 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:39:59 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 13:40:01 by kdi-noce         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:12:31 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
 int	check_the_rest_sprite(char *input)
 {
@@ -72,6 +72,6 @@ int	parse_sprite(t_args *input, t_sprite *sprite)
 		input->y++;
 	}
 	if (idx_text != 4)
-		print_error(1, 0);
+		return (1);
 	return (0);
 }

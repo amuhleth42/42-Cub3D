@@ -6,11 +6,11 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:14:50 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 14:14:58 by kdi-noce         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:33:41 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
 int	calculat_h(char **file_data)
 {
@@ -46,8 +46,10 @@ int	parse_map_size(char **lines, t_map *map)
 	int	x_tmp;
 	int	i;
 
+	printf("alive?\n");
 	x_max = 0;
 	i = 0;
+	printf("%s\n", lines[i]);
 	while (lines[i])
 	{
 		x_tmp = ft_strlen(lines[i]);

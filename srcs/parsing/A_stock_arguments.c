@@ -6,11 +6,11 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:16:13 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 14:16:15 by kdi-noce         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:08:13 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
 int	parse_input_size(char **file_data, t_args *input)
 {
@@ -96,12 +96,12 @@ void	fill_input(char **file_data, t_args *input)
 	}
 }
 
-int	parse_arguments(char **file_data, t_args *input)
+int	parse_arguments(t_data *a, t_args *input)
 {
-	if (parse_input_size(file_data, input))
-		return (1);
+	if (parse_input_size(a->file_data, input))
+		quit(a, "crash because of size\n");
 	if (create_input(input))
-		return (2);
-	fill_input(file_data, input);
+		quit(a, "crash because of creation tab\n");
+	fill_input(a->file_data, input);
 	return (0);
 }

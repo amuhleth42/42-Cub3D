@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_manager.c                                    :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:51:25 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 11:51:30 by kdi-noce         ###   ########.fr       */
+/*   Created: 2022/11/21 15:37:54 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/11/21 16:09:01 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "0_parser_maps.h"
+#include "cub3d.h"
 
-int	manage_args(int ac, char **av)
+int	manage_args(t_data *a, int ac, char **av)
 {
 	int	i;
 
 	i = -1;
 	if (ac != 2)
-	{
-		printf("less arguments\n", stderr);
-		return (1);
-	}
+		quit(a, "Please enter a map as an argument !");
 	if (av[0])
 	{
 		while (av[++i])
 		{
 			if (!av[i])
 			{
-				printf("arguments is NULL\n", stderr);
+				quit(a, "arguments is NULL\n");
 				return (1);
 			}
 		}
@@ -74,27 +71,5 @@ int	manage_map_error(char *line, int y, int x, int err)
 		print_right_line(line, x);
 	if (err == 3)
 		print_right_line(line, x);
-	return (1);
-}
-
-int	print_error(int ret, int cause)
-{
-	if (ret == 0)
-	{
-		if (cause == 1)
-			printf("crash because of size\n", stderr);
-		else if (cause == 2)
-			printf("crash because of creation tab\n", stderr);
-	}
-	if (ret == 1)
-		printf("crash 1\n", stderr);
-	if (ret == 2)
-		printf("crash 2\n", stderr);
-	if (ret == 3)
-		printf("crash 3\n", stderr);
-	if (ret == 4)
-		printf("crash 4\n", stderr);
-	if (ret == 5)
-		printf("crash 5\n", stderr);
 	return (1);
 }
