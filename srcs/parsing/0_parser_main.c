@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:37:00 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 16:58:38 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:20:57 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,16 @@ char	**read_file(char *path, t_data *a)
 int	parser(int ac, char **av, t_data *a)
 {
 	int			line_array;
-	int			i;
 
-	i = -1;
 	manage_args(a, ac, av);
 	a->file_data = read_file(av[1], a);
-	while (a->file_data[++i])
-		printf("file data: %s\n", a->file_data[i]);
 	parse_arguments(a, &a->input);
 	line_array = calculat_h(a->file_data);
-	printf("line array: %d\n", line_array);
 	if (parse_sprite(&a->input, &a->sprite))
 		quit(a, "Parse sprite failed\n");
-	printf("yo\n");
 	if (parse_colors(&a->input))
 		quit(a, "Parse colors failed\n");
-	printf("yo\n");
 	if (parse_map(a->file_data + line_array, &a->cam, &a->map))
 		quit(a, "Parse map failed\n");
-	printf("yo\n");
 	return (0);
 }

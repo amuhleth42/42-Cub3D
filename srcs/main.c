@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 17:06:29 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:13:30 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	check_map_pouet(t_data *a)
 	a->map.y = 6;
 	a->map.floor = 0xAAAAAA;
 	a->map.ceiling = 0x666666;*/
-
 	int i;
 
 	i = 0;
@@ -82,9 +81,9 @@ void	init_textures(t_data *a)
 
 void	init_game(t_data *a)
 {
-	a->cam.x = 170.0;
-	a->cam.y = 170.0;
-	a->cam.a = 0.0;
+	//a->cam.x = 170.0;
+	//a->cam.y = 170.0;
+	//a->cam.a = 0.0;
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
 	a->cam.size = 4;

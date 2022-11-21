@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:07:30 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 16:37:53 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:22:13 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,13 @@ int	check_map(t_map *map)
 
 int	parse_map(char **lines, t_cam *cam, t_map *map)
 {
-	// int	i = line_array;
-	// while (lines[++i])
-	// 	printf("in parse_map: %s\n", lines[i]);
 	if (parse_map_size(lines, map))
 		return (1);
-	printf("asdjfkl\n");
 	if (create_map(map))
 		return (1);
-	printf("asdjfkl\n");
 	if (fill_map(lines, map, cam))
 		return (1);
-	printf("asdjfkl\n");
 	if (check_map(map))
 		return (1);
-	printf("asdjfkl\n");
 	return (0);
 }
