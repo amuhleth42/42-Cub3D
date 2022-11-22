@@ -90,13 +90,15 @@ void	free_parser(t_data *a)
 
 int	parser(int ac, char **av, t_data *a)
 {
-	int			line_array;
+	int	line_array;
+	int	i;
 
+	i = 0;
 	manage_args(a, ac, av);
 	a->file_data = read_file(av[1], a);
 	parse_arguments(a, &a->input);
 	line_array = calculat_h(a->file_data);
-	if (parse_sprite(&a->input, &a->sprite))
+	if (parse_sprite(a, &a->input, &a->sprite))
 		quit(a, "Error: Parse sprite failed");
 	if (parse_colors(a, &a->input))
 		quit(a, "Error: Parse colors failed");

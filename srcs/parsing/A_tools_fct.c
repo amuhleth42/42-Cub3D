@@ -40,9 +40,10 @@ char	*manage_space(char *array)
 	int		i;
 
 	str = NULL;
-	i = -1;
-	if ((ft_strchr(array, 'C')) || (ft_strchr(array, 'F')))
-		str = array;
+	i = 0;
+	if (go_on(array, 1))
+		return (NULL);
+	str = array;
 	if (str)
 	{
 		tab = ft_split(str, ' ');
@@ -55,7 +56,6 @@ char	*manage_space(char *array)
 			str = ft_strjoin(tab[0], tab[1]);
 			while (--i >= 0)
 				free(tab[i]);
-			tab = NULL;
 		}
 		array = str;
 	}
@@ -66,18 +66,18 @@ char	*check_space(char *array, int ret)
 {
 	char	**str;
 	char	*ret_str;
-	int 	i;
+	int		i;
 
 	i = -1;
 	ret_str = NULL;
-	if (array)
+	if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
+		array = manage_space(array);
+	str = ft_split(array, ' ');
+	if (str)
 	{
-		if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
-			array = manage_space(array);
-		str = ft_split(array, ' ');
-		if (ret == 0 && str)
+		if (ret == 0)
 			ret_str = ft_strdup(str[0]);
-		else if (ret == 1 && str)
+		else if (ret == 1)
 			ret_str = ft_strdup(str[1]);
 		while (str[++i])
 			free(str[i]);

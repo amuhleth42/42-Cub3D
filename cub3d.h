@@ -244,6 +244,13 @@ int		parse_colors(t_data *a, t_args *input);
 int		check_color(char *array, t_text *dirct, t_color *color);
 int		check_the_rest_color(char *input);
 
+/*	tools_fct2.c */
+int 	check_point(char *str);
+int 	count_idx(char **str);
+int 	go_on(char *str, int ret);
+int		manage_nb_player(int player_nb);
+int		ret_space(char *str, int ret);
+
 /*	checker_color.c */
 int		manage_path_dirct_c(t_color *color, t_text *dirct, char *str, int ret);
 int		check_code_c(t_color *color, char *str);
@@ -252,7 +259,7 @@ int		manage_digit_color(char *str1, char *str2, char *str3);
 int		travel_number(char *str1, char *str2, char *str3);
 
 /*	parser_sprite.c */
-int		parse_sprite(t_args *input, t_sprite *sprite);
+int		parse_sprite(t_data *a, t_args *input, t_sprite *sprite);
 int		check_sprite(char *array, t_text *dirct, t_sprite *sprite);
 int		check_the_rest_sprite(char *input);
 
@@ -289,7 +296,7 @@ int		parse_map_size(char **lines, t_map *map);
 int		calculat_h(char **file_data);
 
 /*	error_manager */
-int		manage_args(t_data *a, int ac, char **av);
+void	manage_args(t_data *a, int ac, char **av);
 int		print_error(int ret, int cause);
 int		manage_map_error(char *line, int y, int x, int err);
 

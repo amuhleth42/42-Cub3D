@@ -12,25 +12,30 @@
 
 #include "../../cub3d.h"
 
-int	manage_args(t_data *a, int ac, char **av)
+void	manage_args(t_data *a, int ac, char **av)
 {
+	int	len;
+
 	if (ac != 2)
 		quit(a, "Please enter a map as an argument !");
 	if (!av[1])
 		quit(a, "Error: argument is NULL");
-	return (0);
+	len = ft_strlen(av[1]);
+	if (ft_strncmp(av[1] + len - 4, ".cub", 4))
+		quit(a, "Error: map must be in '.cub'");
 }
 
-void	print_right_line(char *line, int x)
+void	print_right_line(char *line, int y, int x)
 {
 	int	i;
 
 	i = -1;
+	printf("\n%sThere is an error on line:	%d%s\n\n",
+		COL_RED, y, COL_RES);
 	if (x != 0)
 	{
 		while (++i <= (int)ft_strlen(line))
 		{
-			printf("%c", line[i]);
 			if (i == x)
 				printf("%s'%c' => '%c'%s ", COL_RED, line[i - 1],
 					line[i], COL_RES);
@@ -44,7 +49,6 @@ void	print_right_line(char *line, int x)
 			if (i == x)
 				printf("%s'%c' <= '%c'%s", COL_RED, line[i - 1],
 					line[i], COL_RES);
-			printf("%c", line[i]);
 		}
 		printf("\n");
 	}
@@ -52,12 +56,15 @@ void	print_right_line(char *line, int x)
 
 int	manage_map_error(char *line, int y, int x, int err)
 {
-	printf("\n%sThere is an error on line:	%d%s\n\n", COL_RED, y, COL_RES);
+	if (err == 0)
+		printf("\n%s'no player in the map'%s\n\n", COL_RED, COL_RES);
+	if (err == 4)
+		printf("\n%s'to much player in the map'%s\n\n", COL_RED, COL_RES);
 	if (err == 1)
-		print_right_line(line, x);
+		print_right_line(line, y, x);
 	if (err == 2)
-		print_right_line(line, x);
+		print_right_line(line, y, x);
 	if (err == 3)
-		print_right_line(line, x);
+		print_right_line(line, y, x);
 	return (1);
 }

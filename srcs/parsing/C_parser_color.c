@@ -12,11 +12,36 @@
 
 #include "../../cub3d.h"
 
+int	get_color(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
+}
+
+void	set_color(t_data *a, t_color *color)
+{
+	char	**tab;
+
+	tab = ft_split(color->c, ',');
+	a->map.ceiling = get_color(ft_atoi(tab[0]),
+			ft_atoi(tab[1]), ft_atoi(tab[2]));
+	free(tab[0]);
+	free(tab[1]);
+	free(tab[2]);
+	free(tab);
+	tab = ft_split(color->f, ',');
+	a->map.floor = get_color(ft_atoi(tab[0]),
+			ft_atoi(tab[1]), ft_atoi(tab[2]));
+	free(tab[0]);
+	free(tab[1]);
+	free(tab[2]);
+	free(tab);
+}
+
 int	check_the_rest_color(char *input)
 {
 	char	**new_array;
 	int		args;
-	int 	i;
+	int		i;
 
 	args = 0;
 	i = -1;
@@ -30,52 +55,22 @@ int	check_the_rest_color(char *input)
 
 int	check_color(char *array, t_text *dirct, t_color *color)
 {
-	int		i;
 	char	*tmp_color;
 
-	i = 0;
+	if (ret_space(array, 2))
+		return (0);
 	tmp_color = check_space(array, 1);
-	if (!ft_isalpha(array[i]) && array[i])
+	if (array && !ft_isalpha(array[0]))
 		array = check_space(array, 0);
-	if (!dirct->f || !dirct->c)
-	{
-		if (!array || !tmp_color)
-			return (0);
-		if ((array[0] != 'F' && array[0] != 'C') && !ft_isalnum(array[1]))
-			return (0);
-	}
-	if (!ft_strncmp(array, "F", 1))
+	if (array && tmp_color && !ft_strncmp(array, "F", 1))
 		manage_path_dirct_c(color, dirct, tmp_color, 1);
-	else if (!ft_strncmp(array, "C", 1))
+	if (array && tmp_color && !ft_strncmp(array, "C", 1))
 		manage_path_dirct_c(color, dirct, tmp_color, 2);
 	if (dirct->f == 1 && dirct->c == 1)
 		return (2);
-//	free(array)
 	return (0);
 }
-
-int	get_color(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
-
-void	set_color(t_data *a, t_color *color)
-{
-	char	**tab;
-
-	tab = ft_split(color->c, ',');
-	a->map.ceiling = get_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]));
-	free(tab[0]);
-	free(tab[1]);
-	free(tab[2]);
-	free(tab);
-	tab = ft_split(color->f, ',');
-	a->map.floor = get_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]));
-	free(tab[0]);
-	free(tab[1]);
-	free(tab[2]);
-	free(tab);
-}
+//printf("F='%d', C='%d'\n", dirct->f, dirct->c);
 
 int	parse_colors(t_data *a, t_args *input)
 {
@@ -83,14 +78,13 @@ int	parse_colors(t_data *a, t_args *input)
 	t_text	dirct;
 	t_color	color;
 
-	(void)a;
 	input->y = 0;
 	idx_color = 0;
 	struct_init(&dirct);
-	while (input->input[input->y] && input->input[input->y][0])
+	while (input->y < calculat_h(a->file_data))
 	{
-		idx_color = check_color(input->input[input->y], &dirct, &color);
-		if (idx_color == 2 && input->input[input->y + 1] == 0)
+		idx_color += check_color(input->input[input->y], &dirct, &color);
+		if (input->input[input->y + 1] != 0 && idx_color == 2)
 		{
 			if (check_the_rest_color(input->input[input->y]) != 2)
 				break ;
