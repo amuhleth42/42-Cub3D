@@ -3,7 +3,7 @@ SO ./assets/wolf3d/redbrick.XPM
 EA ./assets/wolf3d/purplestone.XPM
 WE ./assets/wolf3d/eagle.XPM
 C 100,100,100
-F 90,90,90
+F 170,170,170
 
 
 

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:15:22 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 22:44:52 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:32:14 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ char	**lst_to_split(t_list *lines);
 int		parser(int ac, char **av, t_data *a);
 
 /*	parser_color.c */
-int		parse_colors(t_args *input);
+int		parse_colors(t_data *a, t_args *input);
 int		check_color(char *array, t_text *dirct, t_color *color);
 int		check_the_rest_color(char *input);
 

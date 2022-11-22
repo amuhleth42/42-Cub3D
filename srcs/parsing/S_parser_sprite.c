@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:39:59 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 16:12:31 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:44:05 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ int	parse_sprite(t_args *input, t_sprite *sprite)
 	input->y = 0;
 	idx_text = 0;
 	struct_init(&dirct);
-	while (input->input[input->y])
+	while (input->input[input->y] && input->input[input->y][0])
 	{
+		//printf("%s\n", input->input[input->y]);
 		idx_text = check_sprite(input->input[input->y], &dirct, sprite);
 		if (idx_text == 4 && input->input[input->y + 1] == 0)
 		{

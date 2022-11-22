@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:37:00 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 22:47:55 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:05:24 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,38 @@ char	**read_file(char *path, t_data *a)
 	return (map);
 }
 
+void	free_input(t_data *a)
+{
+	int	i;
+
+	i = 0;
+	while (a->input.input[i] != NULL)
+	{
+		free(a->input.input[i]);
+		a->input.input[i] = NULL;
+		i++;
+	}
+	if (a->input.input != NULL)
+	{
+		free(a->input.input);
+		a->input.input = NULL;
+	}
+}
+
+void	free_parser(t_data *a)
+{
+	if (a->input.input)
+		free_input(a);
+	if (a->sprite.no)
+		free(a->sprite.no);
+	if (a->sprite.so)
+		free(a->sprite.so);
+	if (a->sprite.we)
+		free(a->sprite.we);
+	if (a->sprite.ea)
+		free(a->sprite.ea);
+}
+
 int	parser(int ac, char **av, t_data *a)
 {
 	int			line_array;
@@ -66,7 +98,7 @@ int	parser(int ac, char **av, t_data *a)
 	line_array = calculat_h(a->file_data);
 	if (parse_sprite(&a->input, &a->sprite))
 		quit(a, "Error: Parse sprite failed");
-	if (parse_colors(&a->input))
+	if (parse_colors(a, &a->input))
 		quit(a, "Error: Parse colors failed");
 	if (parse_map(a->file_data + line_array, &a->cam, &a->map))
 		quit(a, "Error: Parse map failed");

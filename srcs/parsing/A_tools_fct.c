@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:53:16 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 15:21:48 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:40:19 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,19 @@ char	*check_space(char *array, int ret)
 	int 	i;
 
 	i = -1;
-
 	ret_str = NULL;
-	if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
-		array = manage_space(array);
-	str = ft_split(array, ' ');
-	if (ret == 0 && str)
-		ret_str = ft_strdup(str[0]);
-	else if (ret == 1 && str)
-		ret_str = ft_strdup(str[1]);
-	while (str[++i])
-		free(str[i]);
+	if (array)
+	{
+		if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
+			array = manage_space(array);
+		str = ft_split(array, ' ');
+		if (ret == 0 && str)
+			ret_str = ft_strdup(str[0]);
+		else if (ret == 1 && str)
+			ret_str = ft_strdup(str[1]);
+		while (str[++i])
+			free(str[i]);
+	}
 	return (ret_str);
 }
 
