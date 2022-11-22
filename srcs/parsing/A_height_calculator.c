@@ -12,14 +12,11 @@
 
 #include "../../cub3d.h"
 
-
 int	calculat_h(char **file_data)
 {
 	int	i;
 	int	j;
-	int	player_found;
 
-	player_found = 0;
 	i = 0;
 	while (file_data[i])
 	{

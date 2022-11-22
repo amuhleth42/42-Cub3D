@@ -60,15 +60,14 @@ int	check_space_color(char *array)
 	char	**str;
 	int		i;
 
-	i = 0;
 	str = ft_split(array, ' ');
-	while (str[i])
-		i++;
+	i = count_idx(str);
 	if (i != 1)
 		return (1);
+	if (check_point(str[0]))
+		return (1);
 	str = ft_split(str[0], ',');
-	while (str[i])
-		i++;
+	i = count_idx(str);
 	if (i != 3)
 		return (1);
 	if (manage_digit_color(str[0], str[1], str[2]))
@@ -81,11 +80,8 @@ int	check_space_color(char *array)
 
 int	check_code_c(t_color *color, char *str)
 {
-	int	i;
-
 	(void) color;
-	i = 0;
-	if (!ft_isalnum(str[i]) && str[i])
+	if (!ft_isalnum(str[0]))
 	{
 		if (check_space_color(str))
 			return (1);
@@ -100,14 +96,14 @@ int	manage_path_dirct_c(t_color *color, t_text *dirct, char *str, int ret)
 {
 	if (ret == 1)
 	{
-		if (check_code_c(color, str))
+		if (!str || check_code_c(color, str))
 			return (1);
 		color->f = str;
 		dirct->f++;
 	}
 	if (ret == 2)
 	{
-		if (check_code_c(color, str))
+		if (!str || check_code_c(color, str))
 			return (1);
 		color->c = str;
 		dirct->c++;

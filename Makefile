@@ -14,7 +14,7 @@
 
 NAME		= cub3d
 CC			= gcc
-CFLAGS 		= -Wall -Wextra -Werror -Ofast
+CFLAGS 		= -Wall -Wextra -Werror
 
 # LFTDIR 		= ./libft
 # LIBFT		= $(LFTDIR)/libft.a
@@ -47,9 +47,11 @@ FILES		+=  $(addprefix parsing/,	\
  			  	M_stock_map.c			\
  			  	A_height_calculator.c	\
  			  	A_tools_fct.c			\
+ 			  	A_tools_fct2.c			\
  			  	A_error_manager.c		\
  			  	C_checker_color.c		\
- 			  	S_checker_sprite.c)
+ 			  	S_checker_sprite.c		\
+ 			  	A_str_search_keyWords.c)
 
 # =============================================================================
 

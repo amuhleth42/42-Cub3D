@@ -20,7 +20,7 @@ int	parse_input_size(char **file_data, t_args *input)
 
 	x_max = 0;
 	i = 0;
-	while (i < calculat_h(file_data))
+	while (i <= calculat_h(file_data))
 	{
 		x_tmp = ft_strlen(file_data[i]);
 		if (x_max < x_tmp)

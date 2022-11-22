@@ -76,27 +76,28 @@ int	parse_player(char c, int y, int x, t_cam *cam)
 int	fill_map(char **lines, t_map *map, t_cam *cam)
 {
 	int	player_found;
+	int	x;
 
 	player_found = 0;
 	map->y = -1;
+	x = 0;
 	while (lines[++map->y])
 	{
-		map->x = -1;
-		printf("%s\n", lines[map->y]);
-		while (lines[map->y][++map->x])
+		x = -1;
+		while (lines[map->y][++x])
 		{
-			if (lines[map->y][map->x] == '0' || lines[map->y][map->x] == '1'
-				|| lines[map->y][map->x] == '2')
-				map->map[map->y][map->x] = lines[map->y][map->x];
-			else if (ft_isalpha(lines[map->y][map->x]))
+			if (lines[map->y][x] == '0' || lines[map->y][x] == '1'
+				|| lines[map->y][x] == '2')
+				map->map[map->y][x] = lines[map->y][x];
+			else if (ft_isalpha(lines[map->y][x]))
 			{
-				if (parse_player(lines[map->y][map->x], map->y, map->x, cam))
-					return (manage_map_error(lines[map->y],
-							map->y + 1, map->x, 1));
+				parse_player(lines[map->y][x], map->y, x, cam);
 				++player_found;
-				map->map[map->y][map->x] = '0';
+				map->map[map->y][x] = '0';
 			}
 		}
 	}
+	if (manage_nb_player(player_found) != 1)
+		return (0);
 	return (player_found != 1);
 }
