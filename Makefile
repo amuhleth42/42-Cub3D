@@ -14,7 +14,7 @@
 
 NAME		= cub3d
 CC			= gcc
-CFLAGS 		= -Wall -Wextra -Werror -Ofast -g
+CFLAGS 		= -Wall -Wextra -Werror -Ofast
 
 # LFTDIR 		= ./libft
 # LIBFT		= $(LFTDIR)/libft.a
@@ -59,7 +59,7 @@ all :	$(NAME)
 	$(CC) $(CFLAGS) $(INCL) -c $< -o $@
 
 $(NAME) :	libft.a libmlx.a $(OBJS)
-	$(CC) $(CFLAGS) -fsanitize=address $(INCL) $(LIB) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCL) $(LIB) $(OBJS) -o $(NAME)
 
 libft.a :
 	make -C ./libft

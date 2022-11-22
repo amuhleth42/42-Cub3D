@@ -69,6 +69,7 @@ char	*check_space(char *array, int ret)
 	int 	i;
 
 	i = -1;
+
 	ret_str = NULL;
 	if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
 		array = manage_space(array);
