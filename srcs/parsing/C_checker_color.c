@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../cub3d.h"
 
 int	travel_number(char *str1, char *str2, char *str3)
 {
@@ -58,11 +58,9 @@ int	manage_digit_color(char *str1, char *str2, char *str3)
 int	check_space_color(char *array)
 {
 	char	**str;
-	char	*ret_str;
 	int		i;
 
 	i = 0;
-	ret_str = NULL;
 	str = ft_split(array, ' ');
 	while (str[i])
 		i++;
@@ -74,10 +72,10 @@ int	check_space_color(char *array)
 	if (i != 3)
 		return (1);
 	if (manage_digit_color(str[0], str[1], str[2]))
-	{
-		printf("ko\n");
 		return (1);
-	}
+	i = -1;
+	while (str[++i])
+		free(str[i]);
 	return (0);
 }
 

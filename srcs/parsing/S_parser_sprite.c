@@ -10,17 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../cub3d.h"
 
 int	check_the_rest_sprite(char *input)
 {
 	char	**new_array;
 	int		args;
+	int 	i;
 
 	args = 0;
+	i = -1;
 	new_array = ft_split(input, ' ');
 	while (new_array[args])
 		args++;
+	while (new_array[++i])
+		free(new_array[i]);
 	return (args);
 }
 

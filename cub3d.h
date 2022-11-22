@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "mlx.h"
-# include "libft.h"
+# include "libft/libft.h"
 # include <math.h>
 # include <sys/types.h>
 # include <sys/stat.h>

@@ -10,17 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../cub3d.h"
 
 int	check_the_rest_color(char *input)
 {
 	char	**new_array;
 	int		args;
+	int 	i;
 
 	args = 0;
+	i = -1;
 	new_array = ft_split(input, ',');
 	while (new_array[args])
 		args++;
+	while (new_array[++i])
+		free(new_array[i]);
 	return (args);
 }
 
@@ -46,6 +50,7 @@ int	check_color(char *array, t_text *dirct, t_color *color)
 		manage_path_dirct_c(color, dirct, tmp_color, 2);
 	if (dirct->f == 1 && dirct->c == 1)
 		return (2);
+//	free(array)
 	return (0);
 }
 

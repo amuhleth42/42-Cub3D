@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../cub3d.h"
 
 void	print_params(t_args *input)
 {
@@ -66,15 +66,20 @@ char	*check_space(char *array, int ret)
 {
 	char	**str;
 	char	*ret_str;
+	int 	i;
+
+	i = -1;
 
 	ret_str = NULL;
 	if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
 		array = manage_space(array);
 	str = ft_split(array, ' ');
-	if (ret == 0)
-		ret_str = str[0];
-	else
-		ret_str = str[1];
+	if (ret == 0 && str)
+		ret_str = ft_strdup(str[0]);
+	else if (ret == 1 && str)
+		ret_str = ft_strdup(str[1]);
+	while (str[++i])
+		free(str[i]);
 	return (ret_str);
 }
 
