@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/18 16:50:36 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:07:48 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,15 @@ void	init_mlx_hooks(t_data *a)
 	mlx_loop(a->mlx);
 }
 
-void	init_map(t_data *a)
+void	check_map_pouet(t_data *a)
 {
-	int	i;
-
-	a->map.map = ft_calloc(7, sizeof(char *));
-	if (!a->map.map)
-		exit(1);
-	i = 0;
-	while (i < 6)
-	{
-		a->map.map[i] = ft_calloc(8, sizeof(char));
-		if (!a->map.map[i])
-			exit(1);
-		i++;
-	}
-	a->map.map[0] = "1111111";
-	a->map.map[1] = "1100001";
-	a->map.map[2] = "1000001";
-	a->map.map[3] = "1001001";
-	a->map.map[4] = "1000001";
-	a->map.map[5] = "1111111";
-	a->map.x = 7;
-	a->map.y = 6;
 	a->map.floor = 0xAAAAAA;
 	a->map.ceiling = 0x666666;
 	if (a->map.x <= 10 && a->map.y <= 16)
 		a->map.size = 20;
 	else if (a->map.x <= 20 && a->map.y <= 32)
 		a->map.size = 10;
-	else if (a->map.x <= 30 && a->map.y <= 64)
+	else
 		a->map.size = 5;
 }
 
@@ -77,15 +56,12 @@ void	init_tile(t_img *img, char *file, void *mlx)
 
 void	init_textures(t_data *a)
 {
-	init_tile(&a->n, "assets/wolf3d/eagle.XPM", a->mlx);
-	init_tile(&a->s, "assets/wolf3d/eagle.XPM", a->mlx);
-	init_tile(&a->e, "assets/wolf3d/eagle.XPM", a->mlx);
-	init_tile(&a->w, "assets/wolf3d/eagle.XPM", a->mlx);
-	/*if (!a->map.n.img)
-	{
-		ft_printf("Error: texture failed\n");
-		exit(0);
-	}*/
+	init_tile(&a->n, a->sprite.no, a->mlx);
+	init_tile(&a->s, a->sprite.so, a->mlx);
+	init_tile(&a->e, a->sprite.ea, a->mlx);
+	init_tile(&a->w, a->sprite.we, a->mlx);
+	if (!a->n.img || !a->s.img || !a->e.img || !a->w.img)
+		quit(a, "Error: texture not found");
 	a->n.addr = mlx_get_data_addr(a->n.img, &a->n.bpp, &a->n.ll, &a->n.endian);
 	a->s.addr = mlx_get_data_addr(a->s.img, &a->s.bpp, &a->s.ll, &a->s.endian);
 	a->e.addr = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.ll, &a->e.endian);
@@ -94,9 +70,6 @@ void	init_textures(t_data *a)
 
 void	init_game(t_data *a)
 {
-	a->cam.x = 170.0;
-	a->cam.y = 170.0;
-	a->cam.a = 0.0;
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
 	a->cam.size = 4;
@@ -108,10 +81,9 @@ int	main(int argc, char **argv)
 {
 	t_data	a;
 
-	(void)argc;
-	(void)argv;
 	ft_bzero(&a, sizeof(a));
-	init_map(&a);
+	parser(argc, argv, &a);
+	check_map_pouet(&a);
 	init_graphics(&a);
 	init_textures(&a);
 	init_game(&a);
