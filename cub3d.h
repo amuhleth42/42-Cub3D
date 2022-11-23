@@ -290,6 +290,7 @@ t_text	struct_init(t_text *dirct);
 char	*check_space(char *array, int ret);
 void	print_map(t_map *pars);
 int		find_first_occurrence(t_args *input);
+char	*manage_space(char *array, char *str);
 
 /*	height_calculator.c */
 int		parse_map_size(char **lines, t_map *map);
@@ -305,5 +306,8 @@ void	colorTheChar(char **tab, int H, int L);
 void	colorFirst(char *str);
 void	colorTheRest(char *str, int H, int index);
 void	colorLast(char *str, int H);
+
+char *stock_modif(char **tab, char *str);
+
 
 #endif
