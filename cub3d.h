@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:15:22 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 13:32:14 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:59:17 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define PI 3.1415926535
 
-# define VIEW_FIELD	PI/3
+# define VIEW_FIELD	1.0471975511
 # define COLUMN_SIZE 2
 
 # define      COL_RED        "\033[31;1m"
@@ -232,7 +232,11 @@ int		loop_render(t_data *a);
 void	render_frame(t_data *a);
 void	clear_img(t_img *i);
 
-//	parser.h
+//	textures.c
+
+void	init_textures(t_data *a);
+
+//	parser.h   //
 
 /*	parser_main.c */
 char	**read_file(char *path, t_data *a);
@@ -245,9 +249,9 @@ int		check_color(char *array, t_text *dirct, t_color *color);
 int		check_the_rest_color(char *input);
 
 /*	tools_fct2.c */
-int 	check_point(char *str);
-int 	count_idx(char **str);
-int 	go_on(char *str, int ret);
+int		check_point(char *str);
+int		count_idx(char **str);
+int		go_on(char *str, int ret);
 int		manage_nb_player(int player_nb);
 int		ret_space(char *str, int ret);
 
@@ -307,7 +311,6 @@ void	colorFirst(char *str);
 void	colorTheRest(char *str, int H, int index);
 void	colorLast(char *str, int H);
 
-char *stock_modif(char **tab, char *str);
-
+char	*stock_modif(char **tab, char *str);
 
 #endif

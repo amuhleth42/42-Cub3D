@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 13:54:54 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:55:52 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_mlx_hooks(t_data *a)
 	mlx_loop(a->mlx);
 }
 
-void	check_map_pouet(t_data *a)
+void	set_dynamic_map(t_data *a)
 {
 	if (a->map.x <= 10 && a->map.y <= 16)
 		a->map.size = 20;
@@ -45,25 +45,6 @@ void	check_map_pouet(t_data *a)
 		a->map.size = 10;
 	else
 		a->map.size = 5;
-}
-
-void	init_tile(t_img *img, char *file, void *mlx)
-{
-	img->img = mlx_xpm_file_to_image(mlx, file, &img->x, &img->y);
-}
-
-void	init_textures(t_data *a)
-{
-	init_tile(&a->n, a->sprite.no, a->mlx);
-	init_tile(&a->s, a->sprite.so, a->mlx);
-	init_tile(&a->e, a->sprite.ea, a->mlx);
-	init_tile(&a->w, a->sprite.we, a->mlx);
-	if (!a->n.img || !a->s.img || !a->e.img || !a->w.img)
-		quit(a, "Error: texture not found");
-	a->n.addr = mlx_get_data_addr(a->n.img, &a->n.bpp, &a->n.ll, &a->n.endian);
-	a->s.addr = mlx_get_data_addr(a->s.img, &a->s.bpp, &a->s.ll, &a->s.endian);
-	a->e.addr = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.ll, &a->e.endian);
-	a->w.addr = mlx_get_data_addr(a->w.img, &a->w.bpp, &a->w.ll, &a->w.endian);
 }
 
 void	init_game(t_data *a)
@@ -81,7 +62,7 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&a, sizeof(a));
 	parser(argc, argv, &a);
-	check_map_pouet(&a);
+	set_dynamic_map(&a);
 	init_graphics(&a);
 	init_textures(&a);
 	init_game(&a);
