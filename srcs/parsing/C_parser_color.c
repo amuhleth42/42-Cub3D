@@ -66,7 +66,9 @@ int	check_color(char *array, t_text *dirct, t_color *color)
 		manage_path_dirct_c(color, dirct, tmp_color, 1);
 	if (array && tmp_color && !ft_strncmp(array, "C", 1))
 		manage_path_dirct_c(color, dirct, tmp_color, 2);
-	if (dirct->f == 1 && dirct->c == 1)
+	if (dirct->f > 1 || dirct->c > 1)
+		return (4);
+	else if (dirct->f == 1 && dirct->c == 1)
 		return (2);
 	return (0);
 }
@@ -84,7 +86,7 @@ int	parse_colors(t_data *a, t_args *input)
 	while (input->y < calculat_h(a->file_data))
 	{
 		idx_color += check_color(input->input[input->y], &dirct, &color);
-		if (input->input[input->y + 1] != 0 && idx_color == 2)
+		if (input->input[input->y + 1] == 0 && idx_color == 2)
 		{
 			if (check_the_rest_color(input->input[input->y]) != 2)
 				break ;
@@ -98,3 +100,4 @@ int	parse_colors(t_data *a, t_args *input)
 	free(color.f);
 	return (0);
 }
+//printf("%s\n", input->input[input->y]);

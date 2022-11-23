@@ -33,13 +33,11 @@ void	print_map(t_map *pars)
 		printf("%s\n", pars->map[i]);
 }
 
-char	*manage_space(char *array)
+char	*manage_space(char *array, char *str)
 {
-	char	*str;
 	char	**tab;
 	int		i;
 
-	str = NULL;
 	i = 0;
 	if (go_on(array, 1))
 		return (NULL);
@@ -50,37 +48,40 @@ char	*manage_space(char *array)
 		while (tab[i])
 			i++;
 		if (i == 3)
+			array = stock_modif(tab, str);
+		if (i == 2)
 		{
-			tab[1] = ft_strjoin(tab[1], tab[2]);
 			tab[0] = ft_strjoin(tab[0], " ");
 			str = ft_strjoin(tab[0], tab[1]);
-			while (--i >= 0)
-				free(tab[i]);
+			array = str;
 		}
-		array = str;
+		while (--i >= 0)
+			free(tab[i]);
 	}
 	return (array);
 }
 
 char	*check_space(char *array, int ret)
 {
-	char	**str;
+	char	**tab;
+	char	*str;
 	char	*ret_str;
 	int		i;
 
 	i = -1;
+	str = NULL;
 	ret_str = NULL;
 	if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
-		array = manage_space(array);
-	str = ft_split(array, ' ');
-	if (str)
+		array = manage_space(array, str);
+	tab = ft_split(array, ' ');
+	if (tab)
 	{
 		if (ret == 0)
-			ret_str = ft_strdup(str[0]);
+			ret_str = ft_strdup(tab[0]);
 		else if (ret == 1)
-			ret_str = ft_strdup(str[1]);
-		while (str[++i])
-			free(str[i]);
+			ret_str = ft_strdup(tab[1]);
+		while (tab[++i])
+			free(tab[i]);
 	}
 	return (ret_str);
 }
