@@ -12,6 +12,14 @@
 
 #include "../../cub3d.h"
 
+char	*stock_modif(char **tab, char *str)
+{
+	tab[1] = ft_strjoin(tab[1], tab[2]);
+	tab[0] = ft_strjoin(tab[0], " ");
+	str = ft_strjoin(tab[0], tab[1]);
+	return (str);
+}
+
 int	manage_nb_player(int player_nb)
 {
 	if (!player_nb)
@@ -36,12 +44,13 @@ int	manage_letter_sprite(char *str, int i)
 
 int	manage_letter_color(char *str, int i)
 {
-	if (str[i] == 'C' && str[i + 1] == ' ')
+	if (str[i - 1] != 'F' && str[i] == 'C' && str[i + 1] == ' ')
 		return (1);
-	if (str[i] == 'F' && str[i + 1] == ' ')
+	if (str[i - 1] != 'C' && str[i] == 'F' && str[i + 1] == ' ')
 		return (1);
 	return (0);
 }
+//	printf("str = %d	%s	%d\n", (int)ft_strlen(str), str, i);
 
 int	ret_space(char *str, int ret)
 {
