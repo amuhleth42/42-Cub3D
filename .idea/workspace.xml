@@ -13,19 +13,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d254039d-8f92-4ae7-8510-ee73528a60f6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/srcs/parsing/A_tools_fct3.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cub3d.h" beforeDir="false" afterPath="$PROJECT_DIR$/cub3d.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft" beforeDir="false" afterPath="$PROJECT_DIR$/libft" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/str/ft_split.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/str/ft_split.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/str/ft_strjoin.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/str/ft_strjoin.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/parsing/0_parser_main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/0_parser_main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parsing/A_str_search_keyWords.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/A_str_search_keyWords.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parsing/A_tools_fct.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/A_tools_fct.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parsing/C_checker_color.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/C_checker_color.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/parsing/A_tools_fct3.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/A_tools_fct3.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/parsing/C_parser_color.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/C_parser_color.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parsing/S_parser_sprite.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/S_parser_sprite.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +81,7 @@
       <workItem from="1669385171203" duration="8742000" />
       <workItem from="1669403706029" duration="5278000" />
       <workItem from="1669409242895" duration="7057000" />
-      <workItem from="1669474066959" duration="13584000" />
+      <workItem from="1669474066959" duration="14132000" />
     </task>
     <servers />
   </component>

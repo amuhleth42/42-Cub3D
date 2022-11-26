@@ -19,7 +19,6 @@ char	*free_tab(char **tab)
 	i = -1;
 	while (tab[++i])
 	{
-//		printf("tab[%d]  %s\n", i, tab[i]);
 		free(tab[i]);
 		tab[i] = NULL;
 	}
@@ -27,6 +26,7 @@ char	*free_tab(char **tab)
 	tab = NULL;
 	return (NULL);
 }
+//		printf("tab[%d]  %s\n", i, tab[i]);
 
 char	*manage_array_n(char *array)
 {

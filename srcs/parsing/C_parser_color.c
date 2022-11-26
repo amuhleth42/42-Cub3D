@@ -47,7 +47,6 @@ int	check_the_rest_color(char *input)
 	while (new_array[args])
 		args++;
 	free_tab(new_array);
-
 	return (args);
 }
 

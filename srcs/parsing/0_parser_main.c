@@ -35,7 +35,7 @@ char	**read_file(t_list *lst_l, char *path, t_data *a)
 {
 	char	**map;
 	char	*line;
-	char 	*ret;
+	char	*ret;
 	int		fd;
 
 	fd = open(path, O_RDONLY);
@@ -95,7 +95,7 @@ void	free_parser(t_data *a)
 int	parser(int ac, char **av, t_data *a)
 {
 	int		line_array;
-	t_list 	lst_l;
+	t_list	lst_l;
 
 	manage_args(a, ac, av);
 	a->file_data = read_file(&lst_l, av[1], a);
@@ -109,5 +109,4 @@ int	parser(int ac, char **av, t_data *a)
 		quit(a, "Error: Parse map failed");
 	return (0);
 }
-
 // 2 leaks strjoin.
