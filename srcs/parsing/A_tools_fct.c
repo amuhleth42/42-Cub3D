@@ -41,48 +41,46 @@ char	*manage_space(char *array, char *str)
 	i = 0;
 	if (go_on(array, 1))
 		return (NULL);
-	str = array;
-	if (str)
+	if (array)
 	{
-		tab = ft_split(str, ' ');
+		tab = ft_split(array, ' ');
 		while (tab[i])
 			i++;
+		if ((i != 2 && i != 3))
+			return (free_tab(tab));
 		if (i == 3)
-			array = stock_modif(tab, str);
+			str = stock_modif(tab, array, i);
 		if (i == 2)
-		{
-			tab[0] = ft_strjoin(tab[0], " ");
-			str = ft_strjoin(tab[0], tab[1]);
-			array = str;
-		}
-		while (--i >= 0)
-			free(tab[i]);
+			str = stock_modif(tab, array, i);
+		free_tab(tab);
 	}
-	return (array);
+	return (str);
 }
 
 char	*check_space(char *array, int ret)
 {
 	char	**tab;
-	char	*str;
 	char	*ret_str;
-	int		i;
+	char	*str;
 
-	i = -1;
-	str = NULL;
 	ret_str = NULL;
+	str = NULL;
 	if (ft_strchr(array, 'C') || ft_strchr(array, 'F'))
 		array = manage_space(array, str);
+	if (!array)
+		return (NULL);
 	tab = ft_split(array, ' ');
+	if (!tab)
+		free_tab(tab);
 	if (tab)
 	{
 		if (ret == 0)
 			ret_str = ft_strdup(tab[0]);
 		else if (ret == 1)
 			ret_str = ft_strdup(tab[1]);
-		while (tab[++i])
-			free(tab[i]);
+		free_tab(tab);
 	}
+	free(str);
 	return (ret_str);
 }
 

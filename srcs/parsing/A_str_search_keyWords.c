@@ -12,12 +12,28 @@
 
 #include "../../cub3d.h"
 
-char	*stock_modif(char **tab, char *str)
+char	*stock_modif(char **tab, char *array, int i)
 {
-	tab[1] = ft_strjoin(tab[1], tab[2]);
-	tab[0] = ft_strjoin(tab[0], " ");
-	str = ft_strjoin(tab[0], tab[1]);
-	return (str);
+	char	*tmp;
+	char	*tmp2;
+	char	*str;
+
+	if (i == 3)
+	{
+		tmp = ft_strjoin(tab[1], tab[2]);
+		tmp2 = ft_strjoin(tab[0], " ");
+		str = ft_strjoin(tmp2, tmp);
+		free(tmp2);
+	}
+	if (i == 2)
+	{
+		tmp = ft_strjoin(tab[0], " ");
+		str = ft_strjoin(tmp, tab[1]);
+	}
+	ft_strlcpy(array, str, ft_strlen(str) + 1);
+	free(tmp);
+	free(str);
+	return (array);
 }
 
 int	manage_nb_player(int player_nb)
@@ -44,10 +60,20 @@ int	manage_letter_sprite(char *str, int i)
 
 int	manage_letter_color(char *str, int i)
 {
-	if (str[i - 1] != 'F' && str[i] == 'C' && str[i + 1] == ' ')
-		return (1);
-	if (str[i - 1] != 'C' && str[i] == 'F' && str[i + 1] == ' ')
-		return (1);
+	if ((str[i] == 'C' && str[i + 1] == ' '))
+	{
+		if (i >= 1 && (str[i - 1] != 'F' && str[i - 1] != 'C'))
+			return (1);
+		if (i == 0)
+			return (1);
+	}
+	if ((str[i] == 'F' && str[i + 1] == ' '))
+	{
+		if (i >= 1 && (str[i - 1] != 'C' && str[i - 1] != 'F'))
+			return (1);
+		if (i == 0)
+			return (1);
+	}
 	return (0);
 }
 //	printf("str = %d	%s	%d\n", (int)ft_strlen(str), str, i);

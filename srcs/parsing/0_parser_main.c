@@ -31,28 +31,32 @@ char	**lst_to_split(t_list *lines)
 	return (map);
 }
 
-char	**read_file(char *path, t_data *a)
+char	**read_file(t_list *lst_l, char *path, t_data *a)
 {
-	t_list	*lines;
 	char	**map;
 	char	*line;
+	char 	*ret;
 	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		quit(a, "Error: open failed");
-	line = ft_strtrim(get_next_line(fd), "\n");
+	ret = get_next_line(fd);
+	line = ft_strtrim(ret, "\n");
+	free(ret);
 	if (!line)
 		quit(a, "Error: parsing: empty file");
-	lines = NULL;
+	lst_l = NULL;
 	while (line)
 	{
-		ft_lstadd_back(&lines, ft_lstnew(line));
-		line = ft_strtrim(get_next_line(fd), "\n");
+		ft_lstadd_back(&lst_l, ft_lstnew(line));
+		ret = get_next_line(fd);
+		line = ft_strtrim(ret, "\n");
+		free(ret);
 	}
 	close(fd);
-	map = lst_to_split(lines);
-	ft_lstclear(&lines, &free);
+	map = lst_to_split(lst_l);
+	ft_lstclear(&lst_l, &free);
 	return (map);
 }
 
@@ -90,12 +94,11 @@ void	free_parser(t_data *a)
 
 int	parser(int ac, char **av, t_data *a)
 {
-	int	line_array;
-	int	i;
+	int		line_array;
+	t_list 	lst_l;
 
-	i = 0;
 	manage_args(a, ac, av);
-	a->file_data = read_file(av[1], a);
+	a->file_data = read_file(&lst_l, av[1], a);
 	parse_arguments(a, &a->input);
 	line_array = calculat_h(a->file_data);
 	if (parse_sprite(a, &a->input, &a->sprite))
@@ -106,3 +109,5 @@ int	parser(int ac, char **av, t_data *a)
 		quit(a, "Error: Parse map failed");
 	return (0);
 }
+
+// 2 leaks strjoin.

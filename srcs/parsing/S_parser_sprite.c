@@ -23,8 +23,7 @@ int	check_the_rest_sprite(char *input)
 	new_array = ft_split(input, ' ');
 	while (new_array[args])
 		args++;
-	while (new_array[++i])
-		free(new_array[i]);
+	free_tab(new_array);
 	return (args);
 }
 
@@ -47,6 +46,8 @@ int	check_sprite(char *array, t_text *dirct, t_sprite *sprite)
 		manage_path_dirct_s(sprite, dirct, tmp, 3);
 	else if (array && tmp && !ft_strncmp(array, "EA", 2))
 		manage_path_dirct_s(sprite, dirct, tmp, 4);
+	free(array);
+	array = NULL;
 	if (dirct->no == 1 && dirct->so == 1 && dirct->we == 1 && dirct->ea == 1)
 		return (4);
 	return (0);

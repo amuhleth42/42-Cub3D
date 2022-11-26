@@ -58,23 +58,28 @@ int	manage_digit_color(char *str1, char *str2, char *str3)
 int	check_space_color(char *array)
 {
 	char	**str;
-	int		i;
+	char	**tab;
+	int		len_tab;
+	int		len_str;
 
-	str = ft_split(array, ' ');
-	i = count_idx(str);
-	if (i != 1)
+	tab = ft_split(array, ' ');
+	if (!tab)
+		free_tab(tab);
+	len_tab = count_idx(tab);
+	if (len_tab != 1)
 		return (1);
-	if (check_point(str[0]))
+	if (check_point(tab[0]))
 		return (1);
-	str = ft_split(str[0], ',');
-	i = count_idx(str);
-	if (i != 3)
+	str = ft_split(tab[0], ',');
+	if (!str)
+		free_tab(str);
+	free_tab(tab);
+	len_str = count_idx(str);
+	if (len_str != 3)
 		return (1);
 	if (manage_digit_color(str[0], str[1], str[2]))
 		return (1);
-	i = -1;
-	while (str[++i])
-		free(str[i]);
+	free_tab(str);
 	return (0);
 }
 

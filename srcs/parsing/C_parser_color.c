@@ -41,15 +41,13 @@ int	check_the_rest_color(char *input)
 {
 	char	**new_array;
 	int		args;
-	int		i;
 
 	args = 0;
-	i = -1;
 	new_array = ft_split(input, ',');
 	while (new_array[args])
 		args++;
-	while (new_array[++i])
-		free(new_array[i]);
+	free_tab(new_array);
+
 	return (args);
 }
 
@@ -66,10 +64,9 @@ int	check_color(char *array, t_text *dirct, t_color *color)
 		manage_path_dirct_c(color, dirct, tmp_color, 1);
 	if (array && tmp_color && !ft_strncmp(array, "C", 1))
 		manage_path_dirct_c(color, dirct, tmp_color, 2);
-	if (dirct->f > 1 || dirct->c > 1)
-		return (4);
-	else if (dirct->f == 1 && dirct->c == 1)
+	if (dirct->f == 1 && dirct->c == 1)
 		return (2);
+	free_all(dirct, tmp_color, array);
 	return (0);
 }
 //printf("F='%d', C='%d'\n", dirct->f, dirct->c);

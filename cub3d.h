@@ -239,7 +239,7 @@ void	init_textures(t_data *a);
 //	parser.h   //
 
 /*	parser_main.c */
-char	**read_file(char *path, t_data *a);
+char	**read_file(t_list *lst_l, char *path, t_data *a);
 char	**lst_to_split(t_list *lines);
 int		parser(int ac, char **av, t_data *a);
 
@@ -247,13 +247,6 @@ int		parser(int ac, char **av, t_data *a);
 int		parse_colors(t_data *a, t_args *input);
 int		check_color(char *array, t_text *dirct, t_color *color);
 int		check_the_rest_color(char *input);
-
-/*	tools_fct2.c */
-int		check_point(char *str);
-int		count_idx(char **str);
-int		go_on(char *str, int ret);
-int		manage_nb_player(int player_nb);
-int		ret_space(char *str, int ret);
 
 /*	checker_color.c */
 int		manage_path_dirct_c(t_color *color, t_text *dirct, char *str, int ret);
@@ -296,6 +289,18 @@ void	print_map(t_map *pars);
 int		find_first_occurrence(t_args *input);
 char	*manage_space(char *array, char *str);
 
+/*	tools_fct2.c */
+int		check_point(char *str);
+int		count_idx(char **str);
+int		go_on(char *str, int ret);
+int		manage_nb_player(int player_nb);
+int		ret_space(char *str, int ret);
+
+/*	tools_fct3.c */
+char	*free_tab(char **tab);
+char	*manage_array_n(char *array);
+void	free_all(t_text *dirct, char *str1, char *str2);
+
 /*	height_calculator.c */
 int		parse_map_size(char **lines, t_map *map);
 int		calculat_h(char **file_data);
@@ -311,6 +316,7 @@ void	colorFirst(char *str);
 void	colorTheRest(char *str, int H, int index);
 void	colorLast(char *str, int H);
 
-char	*stock_modif(char **tab, char *str);
+char	*stock_modif(char **tab, char *str, int i);
+
 
 #endif
