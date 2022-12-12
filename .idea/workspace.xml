@@ -14,13 +14,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d254039d-8f92-4ae7-8510-ee73528a60f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cub3d" beforeDir="false" afterPath="$PROJECT_DIR$/cub3d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft" beforeDir="false" afterPath="$PROJECT_DIR$/libft" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/str/ft_split.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/str/ft_split.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/str/ft_strjoin.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/str/ft_strjoin.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parsing/0_parser_main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/0_parser_main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parsing/A_tools_fct3.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/A_tools_fct3.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parsing/C_parser_color.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/C_parser_color.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/parsing/A_tools_fct3.o" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/A_tools_fct3.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/parsing/C_parser_color.o" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parsing/C_parser_color.o" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +82,7 @@
       <workItem from="1669403706029" duration="5278000" />
       <workItem from="1669409242895" duration="7057000" />
       <workItem from="1669474066959" duration="14132000" />
+      <workItem from="1669496654076" duration="531000" />
     </task>
     <servers />
   </component>
